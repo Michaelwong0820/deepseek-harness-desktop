@@ -1,0 +1,18 @@
+node_modules/
+dist/
+*.log
+
+# macOS
+.DS_Store
+*.dmg
+
+# Electron
+out/
+
+# IDE
+.vscode/
+.idea/
+
+# OS temp
+*.swp
+*~
