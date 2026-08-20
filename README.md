@@ -75,3 +75,11 @@ dsh-desktop/
 | macOS | `npx electron-builder --mac dmg` | `dist/DSH Desktop-<ver>-arm64.dmg` |
 | Windows | `npx electron-builder --win nsis` | `dist/DSH Desktop Setup <ver>.exe` |
 | Windows 便携 | `npx electron-builder --win zip` | `dist/DSH Desktop-<ver>-win.zip` |
+
+---
+
+## v0.3.1 更新（修复）
+
+- **修复 code=127 启动失败**：桌面 App 的 PATH 精简导致找不到 `dsh` 命令。
+  现在按优先级解析：`DSH_CMD` 环境变量 > 用户 shell 的 `which/where dsh` > npx 缓存扫描 > 裸 `dsh`；
+  并注入用户登录 shell 的完整 PATH（含 nvm / npx 缓存）再 spawn。

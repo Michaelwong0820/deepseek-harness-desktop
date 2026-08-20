@@ -65,12 +65,92 @@ async function waitForPort(port, tries = 120, interval = 500) {
   return false
 }
 
+// ---------------------------------------------------------------------------
+// 解析 dsh 命令与环境（桌面 App 的 PATH 很精简，需要从用户 shell 补齐）
+// ---------------------------------------------------------------------------
+let cachedShellPath = null
+let cachedDshCmd = null
+
+/** 从用户登录 shell 拿完整 PATH（含 nvm / npx 缓存等） */
+function resolveShellPath() {
+  if (cachedShellPath) return cachedShellPath
+  const { execFileSync } = require('node:child_process')
+  const isWin = process.platform === 'win32'
+  try {
+    const shell = isWin ? 'cmd.exe' : '/bin/zsh'
+    const args = isWin ? ['/c', 'echo %PATH%'] : ['-lc', 'echo $PATH']
+    cachedShellPath = execFileSync(shell, args, { encoding: 'utf8' }).trim()
+    if (cachedShellPath) return cachedShellPath
+  }
+  catch { /* 回退到进程自带 PATH */ }
+  cachedShellPath = process.env.PATH || ''
+  return cachedShellPath
+}
+
+/**
+ * 解析 dsh 可执行文件路径。
+ * 优先级：DSH_CMD 环境变量 > 用户 shell 的 which/where > npx 缓存扫描 > 裸 'dsh'
+ */
+function resolveDshCmd() {
+  if (cachedDshCmd) return cachedDshCmd
+  const { execFileSync } = require('node:child_process')
+  const isWin = process.platform === 'win32'
+
+  // 1. 显式指定
+  if (process.env.DSH_CMD) {
+    cachedDshCmd = process.env.DSH_CMD
+    return cachedDshCmd
+  }
+
+  // 2. 用户 shell 解析（which dsh / where dsh）
+  try {
+    const shell = isWin ? 'cmd.exe' : '/bin/zsh'
+    const args = isWin ? ['/c', 'where dsh'] : ['-lc', 'which dsh']
+    const out = execFileSync(shell, args, { encoding: 'utf8' }).trim().split('\n')[0]
+    if (out) {
+      cachedDshCmd = out.trim()
+      return cachedDshCmd
+    }
+  }
+  catch { /* 继续回退 */ }
+
+  // 3. 扫描 npx 缓存目录（macOS/Linux: ~/.npm/_npx/*/node_modules/.bin/dsh）
+  try {
+    const home = os.homedir()
+    const npxRoot = path.join(home, '.npm', '_npx')
+    if (fs.existsSync(npxRoot)) {
+      const matches = []
+      for (const dir of fs.readdirSync(npxRoot)) {
+        const binDir = path.join(npxRoot, dir, 'node_modules', '.bin')
+        if (!fs.existsSync(binDir)) continue
+        for (const name of fs.readdirSync(binDir)) {
+          if (name === 'dsh' || name === 'dsh.cmd' || name === 'dsh.exe') {
+            const full = path.join(binDir, name)
+            try { matches.push({ full, mtime: fs.statSync(full).mtimeMs }) } catch {}
+          }
+        }
+      }
+      if (matches.length) {
+        matches.sort((a, b) => b.mtime - a.mtime)
+        cachedDshCmd = matches[0].full
+        return cachedDshCmd
+      }
+    }
+  }
+  catch { /* 继续回退 */ }
+
+  // 4. 最后回退：裸命令（依赖 PATH）
+  cachedDshCmd = 'dsh'
+  return cachedDshCmd
+}
+
 async function ensureDshWeb() {
   if (await checkPort(dsh.WEB_PORT)) {
     return { reused: true, error: null }
   }
 
-  const cmd = process.env.DSH_CMD || 'dsh'
+  const cmd = resolveDshCmd()
+  const shellPath = resolveShellPath()
   fs.mkdirSync(DATA_DIR, { recursive: true })
   const logFd = fs.openSync(LOG_FILE, 'a')
   fs.appendFileSync(LOG_FILE, `\n[${new Date().toISOString()}] starting: ${cmd} web (port ${dsh.WEB_PORT})\n`)
@@ -79,6 +159,7 @@ async function ensureDshWeb() {
     dshProcess = spawn(cmd, ['web'], {
       cwd: os.homedir(),
       shell: true,
+      env: { ...process.env, PATH: shellPath },
       stdio: ['ignore', logFd, logFd],
     })
     weSpawnedDsh = true
