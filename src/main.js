@@ -16,6 +16,7 @@ const {
   dialog,
   nativeImage,
   shell,
+  Notification,
 } = require('electron')
 const { spawn } = require('node:child_process')
 const net = require('node:net')
@@ -23,12 +24,19 @@ const fs = require('node:fs')
 const path = require('node:path')
 const os = require('node:os')
 const dsh = require('./dsh-api')
+const settings = require('./settings')
 
 const WEB_URL = dsh.BASE
-const DATA_DIR = path.join(os.homedir(), '.dsh-desktop')
+const DATA_DIR = settings.DATA_DIR
 const RECENT_FILE = path.join(DATA_DIR, 'recent-projects.json')
 const LOG_FILE = path.join(DATA_DIR, 'dsh-web.log')
-const SHORTCUT = 'CommandOrControl+Shift+Space'
+const ONBOARDING_HTML = path.join(__dirname, 'onboarding.html')
+const SHORTCUT_PRESETS = [
+  { label: 'Cmd / Ctrl + Shift + Space', value: 'CommandOrControl+Shift+Space' },
+  { label: 'Cmd / Ctrl + Alt + Space', value: 'CommandOrControl+Alt+Space' },
+  { label: 'Alt + Space', value: 'Alt+Space' },
+  { label: 'Cmd / Ctrl + Shift + D', value: 'CommandOrControl+Shift+D' },
+]
 
 const BUILD_DIR = path.join(__dirname, '..', 'build')
 const TRAY_ICON = process.platform === 'darwin'
@@ -37,6 +45,7 @@ const TRAY_ICON = process.platform === 'darwin'
 const APP_ICON = path.join(BUILD_DIR, 'icon.png')
 
 let mainWindow = null
+let onboardingWindow = null
 let tray = null
 let dshProcess = null
 let weSpawnedDsh = false
@@ -44,6 +53,22 @@ let isQuitting = false
 let workspaces = [] // DSH 工作区缓存
 let sessions = []   // DSH 会话缓存（状态提示用）
 let statusTimer = null
+let notifiedRunningIds = new Set() // 已通知过的运行中会话（任务完成通知用）
+
+function getShortcut() {
+  return settings.load().shortcut
+}
+
+/** 注册/重注册全局快捷键（支持运行时切换） */
+function registerShortcut() {
+  globalShortcut.unregisterAll()
+  const accel = getShortcut()
+  const ok = globalShortcut.register(accel, () => toggleWindow())
+  if (!ok) {
+    dialog.showErrorBox('快捷键注册失败', `「${accel}」已被其他应用占用，请在托盘菜单中换一个。`)
+  }
+  return ok
+}
 
 // ---------------------------------------------------------------------------
 // 端口 / 服务管理
@@ -311,12 +336,31 @@ function workspaceById(id) {
 async function refreshSessions() {
   try {
     const { items } = await dsh.listSessions()
+    const prevRunning = sessions.filter(s => s.running).map(s => s.sessionId)
     sessions = items || []
+    notifyTaskCompletions(prevRunning)
   }
   catch {
     // 服务未就绪：保留旧缓存
   }
   updateTrayStatus()
+}
+
+/** 检测 running → idle 的会话并发送系统通知 */
+function notifyTaskCompletions(prevRunningIds) {
+  if (!Notification.isSupported()) return
+  const nowRunning = new Set(sessions.filter(s => s.running).map(s => s.sessionId))
+  for (const id of prevRunningIds) {
+    if (!nowRunning.has(id)) {
+      const s = sessions.find(x => x.sessionId === id)
+      if (s) {
+        new Notification({
+          title: '✅ 任务完成',
+          body: sessionTitle(s),
+        }).show()
+      }
+    }
+  }
 }
 
 function updateTrayStatus() {
@@ -561,6 +605,19 @@ function rebuildTrayMenu() {
     },
     { type: 'separator' },
     {
+      label: '⌨️ 快捷键',
+      submenu: SHORTCUT_PRESETS.map(preset => ({
+        label: preset.label,
+        type: 'radio',
+        checked: getShortcut() === preset.value,
+        click: () => {
+          settings.save({ shortcut: preset.value })
+          registerShortcut()
+          rebuildTrayMenu()
+        },
+      })),
+    },
+    {
       label: '☑️ 开机自启',
       type: 'checkbox',
       checked: loginItemEnabled(),
@@ -589,10 +646,7 @@ else {
   app.on('second-instance', () => showWindow())
 
   app.whenReady().then(async () => {
-    const ok = globalShortcut.register(SHORTCUT, () => toggleWindow())
-    if (!ok) {
-      console.warn(`全局快捷键注册失败: ${SHORTCUT}`)
-    }
+    registerShortcut()
 
     createTray()
 
@@ -603,6 +657,11 @@ else {
     createWindow()
     refreshWorkspaces()
     refreshSessions()
+
+    // 首次启动：展示引导窗口
+    if (!settings.load().onboarded) {
+      showOnboarding()
+    }
 
     // 周期同步工作区与会话状态
     setInterval(() => refreshWorkspaces(), 30000)
@@ -622,9 +681,76 @@ else {
     stopDshWeb()
   })
 
+  // 崩溃自愈：主进程未捕获异常 → 记录日志并自动重启
+  process.on('uncaughtException', (err) => {
+    try {
+      fs.appendFileSync(LOG_FILE, `[${new Date().toISOString()}] uncaughtException: ${err.stack || err.message}\n`)
+    }
+    catch {}
+    app.relaunch()
+    app.exit(1)
+  })
+
+  process.on('unhandledRejection', (reason) => {
+    try {
+      fs.appendFileSync(LOG_FILE, `[${new Date().toISOString()}] unhandledRejection: ${reason}\n`)
+    }
+    catch {}
+  })
+
+  // 渲染进程崩溃 → 重建窗口
+  app.on('render-process-gone', (_event, _webContents, details) => {
+    try {
+      fs.appendFileSync(LOG_FILE, `[${new Date().toISOString()}] renderer gone: ${details.reason}\n`)
+    }
+    catch {}
+    if (!isQuitting) {
+      setTimeout(() => {
+        if (mainWindow && !mainWindow.isDestroyed()) {
+          mainWindow.loadURL(WEB_URL)
+        }
+        else {
+          createWindow()
+        }
+      }, 1500)
+    }
+  })
+
   app.on('activate', () => showWindow())
 
   app.on('window-all-closed', () => {
     // 常驻托盘，不退出
+  })
+}
+
+// ---------------------------------------------------------------------------
+// 首次启动引导
+// ---------------------------------------------------------------------------
+function showOnboarding() {
+  if (onboardingWindow && !onboardingWindow.isDestroyed()) {
+    onboardingWindow.show()
+    return
+  }
+  onboardingWindow = new BrowserWindow({
+    width: 620,
+    height: 680,
+    resizable: false,
+    minimizable: false,
+    maximizable: false,
+    title: '欢迎使用 DSH Desktop',
+    icon: APP_ICON,
+    backgroundColor: '#12162e',
+    webPreferences: {
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  })
+  onboardingWindow.loadFile(ONBOARDING_HTML)
+  onboardingWindow.on('closed', () => {
+    settings.save({ onboarded: true })
+    onboardingWindow = null
+  })
+  onboardingWindow.on('close', () => {
+    settings.save({ onboarded: true })
   })
 }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>欢迎使用 DSH Desktop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(180deg, #12162e 0%, #1a2140 100%);
+      color: #e8eaf2;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh;
+    }
+    .card { max-width: 560px; padding: 40px 44px; text-align: center; }
+    .logo {
+      width: 64px; height: 64px; margin: 0 auto 20px;
+      border-radius: 16px; background: #1c2340;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 800; color: #fff;
+      border: 2px solid #2a3358;
+    }
+    h1 { font-size: 24px; margin-bottom: 8px; }
+    .sub { color: #9aa3c0; font-size: 14px; margin-bottom: 28px; }
+    .steps { text-align: left; display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .step { display: flex; gap: 12px; align-items: flex-start; }
+    .step .num {
+      flex: none; width: 26px; height: 26px; border-radius: 50%;
+      background: #2a3358; color: #7ec8ff; font-weight: 700; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step .body { font-size: 14px; line-height: 1.6; }
+    .step .body b { color: #fff; }
+    .step .body code {
+      background: #1c2340; padding: 2px 8px; border-radius: 6px;
+      font-size: 13px; color: #7ec8ff;
+    }
+    button {
+      background: #e65d53; color: #fff; border: none; cursor: pointer;
+      padding: 12px 36px; border-radius: 999px; font-size: 15px; font-weight: 600;
+      transition: opacity .2s;
+    }
+    button:hover { opacity: .88; }
+    .tip { margin-top: 18px; font-size: 12px; color: #6b7394; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">DSH</div>
+    <h1>欢迎使用 DSH Desktop</h1>
+    <p class="sub">DeepSeek Harness 桌面端 · 不用敲命令，点图标就开</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="body"><b>全局快捷键</b> — 任何时候按 <code id="shortcutLabel">Cmd/Ctrl+Shift+Space</code> 唤起 / 隐藏窗口</div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="body"><b>托盘常驻</b> — 关闭窗口只是隐藏，服务不退出；托盘菜单可退出</div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="body"><b>项目管理</b> — 托盘 → 项目 → 添加项目，打开即进入该项目工作区</div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div class="body"><b>任务状态</b> — 托盘图标旁的提示显示运行中的会话数，任务跑完有系统通知</div>
+      </div>
+    </div>
+    <button id="startBtn">开始使用 →</button>
+    <p class="tip">可在托盘菜单中随时修改快捷键、开机自启</p>
+  </div>
+  <script>
+    document.getElementById('startBtn').addEventListener('click', () => {
+      // 通知主进程：引导完成
+      window.close()
+    })
+  </script>
+</body>
+</html>
