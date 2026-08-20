@@ -57,7 +57,7 @@ function checkPort(port, timeout = 800) {
   })
 }
 
-async function waitForPort(port, tries = 120, interval = 500) {
+async function waitForPort(port, tries = 240, interval = 500) {
   for (let i = 0; i < tries; i++) {
     if (await checkPort(port)) return true
     await new Promise(r => setTimeout(r, interval))
@@ -69,7 +69,15 @@ async function waitForPort(port, tries = 120, interval = 500) {
 // 解析 dsh 命令与环境（桌面 App 的 PATH 很精简，需要从用户 shell 补齐）
 // ---------------------------------------------------------------------------
 let cachedShellPath = null
-let cachedDshCmd = null
+let cachedDshInvocation = null
+
+/** 解析过程写日志，方便跨平台排查 */
+function resolverLog(msg) {
+  try {
+    fs.appendFileSync(LOG_FILE, `[resolve] ${msg}\n`)
+  }
+  catch { /* 日志写失败不影响主流程 */ }
+}
 
 /** 从用户登录 shell 拿完整 PATH（含 nvm / npx 缓存等） */
 function resolveShellPath() {
@@ -88,37 +96,60 @@ function resolveShellPath() {
 }
 
 /**
- * 解析 dsh 可执行文件路径。
- * 优先级：DSH_CMD 环境变量 > 用户 shell 的 which/where > npx 缓存扫描 > 裸 'dsh'
+ * 解析 dsh 的调用方式（cmd + 前置 args）。
+ * 优先级：
+ *   DSH_CMD 环境变量
+ *   > 用户 shell 的 which/where dsh
+ *   > npx 缓存扫描（默认 ~/.npm/_npx + npm config get cache 的 _npx）
+ *   > npm 全局安装（%APPDATA%\npm 或 npm root -g）
+ *   > npx --yes @deepseek-ai/dsh 兜底（跨平台最稳，首次可能需下载）
  */
-function resolveDshCmd() {
-  if (cachedDshCmd) return cachedDshCmd
+function resolveDshInvocation() {
+  if (cachedDshInvocation) return cachedDshInvocation
   const { execFileSync } = require('node:child_process')
   const isWin = process.platform === 'win32'
 
   // 1. 显式指定
   if (process.env.DSH_CMD) {
-    cachedDshCmd = process.env.DSH_CMD
-    return cachedDshCmd
+    resolverLog(`使用 DSH_CMD=${process.env.DSH_CMD}`)
+    cachedDshInvocation = { cmd: process.env.DSH_CMD, args: [], source: 'env' }
+    return cachedDshInvocation
   }
 
   // 2. 用户 shell 解析（which dsh / where dsh）
   try {
     const shell = isWin ? 'cmd.exe' : '/bin/zsh'
     const args = isWin ? ['/c', 'where dsh'] : ['-lc', 'which dsh']
-    const out = execFileSync(shell, args, { encoding: 'utf8' }).trim().split('\n')[0]
-    if (out) {
-      cachedDshCmd = out.trim()
-      return cachedDshCmd
+    const out = execFileSync(shell, args, { encoding: 'utf8' }).trim().split(/\r?\n/)[0]
+    const bad = !out || /not found|找不到|不是内部或外部命令/i.test(out)
+    if (!bad) {
+      resolverLog(`which/where 命中: ${out}`)
+      cachedDshInvocation = { cmd: out.trim(), args: [], source: 'shell' }
+      return cachedDshInvocation
     }
+    resolverLog(`which/where 未命中: ${out || '(空)'}`)
   }
-  catch { /* 继续回退 */ }
+  catch (e) {
+    resolverLog(`which/where 失败: ${String(e.message).slice(0, 120)}`)
+  }
 
-  // 3. 扫描 npx 缓存目录（macOS/Linux: ~/.npm/_npx/*/node_modules/.bin/dsh）
+  // 3. npx 缓存扫描（默认 + npm config get cache）
   try {
-    const home = os.homedir()
-    const npxRoot = path.join(home, '.npm', '_npx')
-    if (fs.existsSync(npxRoot)) {
+    const npxRoots = [path.join(os.homedir(), '.npm', '_npx')]
+    try {
+      const cacheRoot = execFileSync(
+        isWin ? 'cmd.exe' : '/bin/zsh',
+        isWin ? ['/c', 'npm config get cache'] : ['-lc', 'npm config get cache'],
+        { encoding: 'utf8' },
+      ).trim()
+      if (cacheRoot && !npxRoots.includes(path.join(cacheRoot, '_npx'))) {
+        npxRoots.push(path.join(cacheRoot, '_npx'))
+      }
+    }
+    catch { /* 忽略 */ }
+
+    for (const npxRoot of npxRoots) {
+      if (!fs.existsSync(npxRoot)) continue
       const matches = []
       for (const dir of fs.readdirSync(npxRoot)) {
         const binDir = path.join(npxRoot, dir, 'node_modules', '.bin')
@@ -132,31 +163,75 @@ function resolveDshCmd() {
       }
       if (matches.length) {
         matches.sort((a, b) => b.mtime - a.mtime)
-        cachedDshCmd = matches[0].full
-        return cachedDshCmd
+        resolverLog(`npx 缓存命中: ${matches[0].full}`)
+        cachedDshInvocation = { cmd: matches[0].full, args: [], source: 'npx-cache' }
+        return cachedDshInvocation
       }
     }
+    resolverLog(`npx 缓存未命中（扫描 ${npxRoots.join(', ')}）`)
   }
-  catch { /* 继续回退 */ }
+  catch (e) {
+    resolverLog(`npx 扫描失败: ${String(e.message).slice(0, 120)}`)
+  }
 
-  // 4. 最后回退：裸命令（依赖 PATH）
-  cachedDshCmd = 'dsh'
-  return cachedDshCmd
+  // 4. npm 全局安装
+  try {
+    const globalRoot = isWin
+      ? path.join(process.env.APPDATA || os.homedir(), 'npm')
+      : execFileSync('/bin/zsh', ['-lc', 'npm root -g'], { encoding: 'utf8' }).trim()
+    const binDir = path.join(globalRoot, 'node_modules', '.bin')
+    if (fs.existsSync(binDir)) {
+      for (const name of ['dsh.cmd', 'dsh', 'dsh.exe']) {
+        if (fs.existsSync(path.join(binDir, name))) {
+          resolverLog(`npm 全局命中: ${path.join(binDir, name)}`)
+          cachedDshInvocation = { cmd: path.join(binDir, name), args: [], source: 'npm-global' }
+          return cachedDshInvocation
+        }
+      }
+    }
+    resolverLog(`npm 全局未命中: ${binDir}`)
+  }
+  catch (e) {
+    resolverLog(`npm 全局失败: ${String(e.message).slice(0, 120)}`)
+  }
+
+  // 5. 兜底：npx 执行（跨平台最稳，首次可能触发下载）
+  resolverLog('所有本地路径未命中，回退 npx --yes @deepseek-ai/dsh')
+  cachedDshInvocation = {
+    cmd: isWin ? 'npx.cmd' : 'npx',
+    args: ['--yes', '@deepseek-ai/dsh'],
+    source: 'npx',
+  }
+  return cachedDshInvocation
 }
 
 async function ensureDshWeb() {
+  // 端口已被监听：验证是 DSH 服务再复用（防止被其他程序占用后误连）
   if (await checkPort(dsh.WEB_PORT)) {
-    return { reused: true, error: null }
+    try {
+      await dsh.listWorkspaces()
+      return { reused: true, error: null }
+    }
+    catch {
+      return {
+        reused: false,
+        error: `端口 ${dsh.WEB_PORT} 已被其他程序占用（不是 DSH 服务）。\n请关闭占用该端口的程序后重新打开。`,
+      }
+    }
   }
 
-  const cmd = resolveDshCmd()
+  const inv = resolveDshInvocation()
   const shellPath = resolveShellPath()
+  const spawnArgs = [...inv.args, 'web']
   fs.mkdirSync(DATA_DIR, { recursive: true })
   const logFd = fs.openSync(LOG_FILE, 'a')
-  fs.appendFileSync(LOG_FILE, `\n[${new Date().toISOString()}] starting: ${cmd} web (port ${dsh.WEB_PORT})\n`)
+  fs.appendFileSync(LOG_FILE, `\n[${new Date().toISOString()}] starting: ${inv.cmd} ${spawnArgs.join(' ')} (source=${inv.source}, port ${dsh.WEB_PORT})\n`)
+
+  // 启动等待期间给用户反馈（首次 npx 下载可能较久）
+  if (tray) tray.setToolTip('正在启动 DSH 服务…')
 
   try {
-    dshProcess = spawn(cmd, ['web'], {
+    dshProcess = spawn(inv.cmd, spawnArgs, {
       cwd: os.homedir(),
       shell: true,
       env: { ...process.env, PATH: shellPath },
@@ -166,21 +241,41 @@ async function ensureDshWeb() {
   }
   catch (err) {
     fs.appendFileSync(LOG_FILE, `spawn failed: ${err.message}\n`)
-    return { reused: false, error: `无法启动 ${cmd}: ${err.message}` }
+    if (tray) tray.setToolTip('DeepSeek Harness')
+    return { reused: false, error: `无法启动 ${inv.cmd}: ${err.message}` }
   }
 
   dshProcess.on('exit', (code, signal) => {
     fs.appendFileSync(LOG_FILE, `[${new Date().toISOString()}] dsh web exited code=${code} signal=${signal}\n`)
     if (!isQuitting && weSpawnedDsh) {
-      dialog.showErrorBox('DSH 服务已退出', `dsh web 进程退出(code=${code})。\n日志：${LOG_FILE}`)
+      const choice = dialog.showMessageBoxSync({
+        type: 'error',
+        title: 'DSH 服务已退出',
+        message: `${inv.cmd} 进程退出(code=${code})。`,
+        detail: `日志：${LOG_FILE}`,
+        buttons: ['🔄 重启服务', '关闭'],
+        defaultId: 0,
+        cancelId: 1,
+      })
+      if (choice === 0) {
+        dshProcess = null
+        weSpawnedDsh = false
+        ensureDshWeb().then(({ error }) => {
+          if (!error && mainWindow) mainWindow.loadURL(WEB_URL)
+        })
+      }
     }
   })
 
   const ok = await waitForPort(dsh.WEB_PORT)
+  if (tray) tray.setToolTip('DeepSeek Harness')
   if (!ok) {
+    const installHint = inv.source === 'npx'
+      ? '\n正在通过 npx 下载 DSH，如网络较慢请耐心等待；\n也可以手动安装后重启：npm install -g @deepseek-ai/dsh'
+      : '\n如未安装 dsh，请先安装（需 Node.js 18+）：\n  npm install -g @deepseek-ai/dsh'
     return {
       reused: false,
-      error: `等待 ${cmd} web 就绪超时。\n请确认已安装 dsh 命令（或在环境变量 DSH_CMD 中指定）。\n日志：${LOG_FILE}`,
+      error: `等待 ${inv.cmd} web 就绪超时。${installHint}\n日志：${LOG_FILE}`,
     }
   }
   return { reused: false, error: null }
@@ -336,9 +431,11 @@ function createWindow() {
     if (code === -102 || code === -105) {
       mainWindow.loadURL(
         `data:text/html;charset=utf-8,${encodeURIComponent(`<!doctype html><html><body style="font-family:-apple-system,sans-serif;background:#12162e;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0">
-          <div style="text-align:center">
+          <div style="text-align:center;max-width:560px;padding:24px">
             <h2>DSH 服务未就绪</h2>
             <p>${desc}</p>
+            <p style="color:#8a8f9d">服务可能还在启动中，或需要安装 DSH：</p>
+            <pre style="background:#1c2340;padding:12px;border-radius:8px;text-align:left;font-size:13px">npm install -g @deepseek-ai/dsh</pre>
             <p style="color:#8a8f9d">日志：${LOG_FILE}</p>
           </div></body></html>`)}`,
       )
@@ -515,6 +612,14 @@ else {
   app.on('will-quit', () => {
     globalShortcut.unregisterAll()
     if (statusTimer) clearInterval(statusTimer)
+  })
+
+  // 关键修复：Cmd+Q / Dock 退出 / 系统关机都会触发 before-quit。
+  // 必须在这里放行 isQuitting，否则窗口 close 的 preventDefault 会拦截退出，
+  // 导致 App 卡在 Dock 上只能强制退出。
+  app.on('before-quit', () => {
+    isQuitting = true
+    stopDshWeb()
   })
 
   app.on('activate', () => showWindow())

@@ -83,3 +83,16 @@ dsh-desktop/
 - **修复 code=127 启动失败**：桌面 App 的 PATH 精简导致找不到 `dsh` 命令。
   现在按优先级解析：`DSH_CMD` 环境变量 > 用户 shell 的 `which/where dsh` > npx 缓存扫描 > 裸 `dsh`；
   并注入用户登录 shell 的完整 PATH（含 nvm / npx 缓存）再 spawn。
+
+---
+
+## v0.3.3 更新（体验修复）
+
+- **修复 macOS 退出卡 Dock**：`Cmd+Q` / Dock 退出 / 系统关机现在走 `before-quit` 放行，
+  不再被窗口关闭拦截（之前只能强制退出）
+- **端口占用保护**：3080 被其他程序占用时不再误连，提示用户关闭占用程序
+- **开箱即用增强**：
+  - dsh 解析 4 级回退（环境变量 > shell which > npx 缓存 > npm 全局 > npx 自动下载）
+  - 服务启动失败弹窗带安装指引（npm install -g @deepseek-ai/dsh）
+  - 服务意外退出弹窗提供"重启服务"按钮
+  - 启动等待期间托盘提示"正在启动 DSH 服务…"
