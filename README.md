@@ -106,3 +106,14 @@ dsh-desktop/
 - **任务完成系统通知**：会话 running→idle 自动发通知（含任务标题）
 - **崩溃自愈**：主进程异常自动重启、渲染进程崩溃自动重建窗口
 - 设置持久化模块 `src/settings.js`
+
+---
+
+## v0.5.0 更新（内嵌 dsh，彻底开箱即用）
+
+- **内嵌 dsh 运行时**：App 自带完整 @deepseek-ai/dsh 依赖树（195 包，精确锁定 rc.7 版本），
+  用 Electron 的 Node 模式（ELECTRON_RUN_AS_NODE）直接运行 —— **用户无需安装 node/npm/dsh，
+  无需网络下载，首次安装即开箱即用**
+- 解决 Windows 首次安装"npx 下载超时"问题（不再依赖 npx 兜底）
+- 依赖版本全部锁定精确版本（复刻自验证可用的 npx 缓存树，517 包）
+- 构建配置：`asar: false`（避免 ESM 模块在 asar 内解析失败）+ `npmRebuild: false`（N-API 模块免 rebuild）

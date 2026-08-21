@@ -122,8 +122,27 @@ function resolveShellPath() {
 
 /**
  * 解析 dsh 的调用方式（cmd + 前置 args）。
+/**
+ * 内置 dsh：App 自带 @deepseek-ai/dsh（打进 asar），用 Electron 二进制的
+ * Node 模式运行 —— 用户机器无需安装 node/npm/dsh，也无需网络下载。
+ * @returns {string|null} 内置 bin.js 路径
+ */
+function builtinDshBin() {
+  try {
+    // 开发时: 项目 node_modules；打包后: app.asar/node_modules（__dirname 在 app.asar/src 内）
+    const bin = path.join(__dirname, '..', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js')
+    return fs.existsSync(bin) ? bin : null
+  }
+  catch {
+    return null
+  }
+}
+
+/**
+ * 解析 dsh 的调用方式（cmd + 前置 args）。
  * 优先级：
- *   DSH_CMD 环境变量
+ *   内置 dsh（打包自带，开箱即用）
+ *   > DSH_CMD 环境变量
  *   > 用户 shell 的 which/where dsh
  *   > npx 缓存扫描（默认 ~/.npm/_npx + npm config get cache 的 _npx）
  *   > npm 全局安装（%APPDATA%\npm 或 npm root -g）
@@ -133,6 +152,20 @@ function resolveDshInvocation() {
   if (cachedDshInvocation) return cachedDshInvocation
   const { execFileSync } = require('node:child_process')
   const isWin = process.platform === 'win32'
+
+  // 0. 内置 dsh（最优先）
+  const builtinBin = builtinDshBin()
+  if (builtinBin) {
+    resolverLog(`内置 dsh 命中: ${builtinBin}`)
+    cachedDshInvocation = {
+      cmd: process.execPath,
+      args: [builtinBin],
+      source: 'builtin',
+      useNodeMode: true,
+    }
+    return cachedDshInvocation
+  }
+  resolverLog('内置 dsh 不存在，走外部解析')
 
   // 1. 显式指定
   if (process.env.DSH_CMD) {
@@ -256,12 +289,22 @@ async function ensureDshWeb() {
   if (tray) tray.setToolTip('正在启动 DSH 服务…')
 
   try {
-    dshProcess = spawn(inv.cmd, spawnArgs, {
-      cwd: os.homedir(),
-      shell: true,
-      env: { ...process.env, PATH: shellPath },
-      stdio: ['ignore', logFd, logFd],
-    })
+    if (inv.useNodeMode) {
+      // 内置 dsh：直接用 Electron 二进制以 Node 模式运行（无需 shell/系统 node）
+      dshProcess = spawn(process.execPath, [...inv.args, 'web'], {
+        cwd: os.homedir(),
+        env: { ...process.env, PATH: shellPath, ELECTRON_RUN_AS_NODE: '1' },
+        stdio: ['ignore', logFd, logFd],
+      })
+    }
+    else {
+      dshProcess = spawn(inv.cmd, spawnArgs, {
+        cwd: os.homedir(),
+        shell: true,
+        env: { ...process.env, PATH: shellPath },
+        stdio: ['ignore', logFd, logFd],
+      })
+    }
     weSpawnedDsh = true
   }
   catch (err) {
