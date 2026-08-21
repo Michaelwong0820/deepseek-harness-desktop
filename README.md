@@ -126,3 +126,12 @@ dsh-desktop/
   Node 内部模块，HMR 插件报 `--expose-internals is required` → spawn 时显式传
   `--expose-internals` flag
 - 注：外部手动 `node dsh web` 无此问题（系统 Node 默认可用 internal），Node v24 实测正常
+
+---
+
+## v0.5.2 更新（koffi 原生模块修复）
+
+- **修复 Windows 内置 dsh 启动失败**：`Cannot find the native Koffi module`
+  koffi 的 prebuilt 按平台分发（`@koromix/koffi-<平台>-<架构>`），npm 只装了当前平台包。
+  交叉打包 Windows 时缺 `@koromix/koffi-win32-x64` → 显式装入 dependencies（锁 3.1.5），
+  Windows 包现在自带 `win32_x64/koffi.node`

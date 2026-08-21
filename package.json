@@ -1,6 +1,6 @@
 {
   "name": "dsh-desktop",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "DeepSeek Harness 桌面端 - 常驻托盘 + 全局快捷键唤起",
   "main": "src/main.js",
   "scripts": {
@@ -276,6 +276,7 @@
     "@img/sharp-wasm32": "0.35.3",
     "@joplin/turndown-plugin-gfm": "1.0.67",
     "@koromix/koffi-darwin-arm64": "3.1.5",
+    "@koromix/koffi-win32-x64": "3.1.5",
     "@mistralai/mistralai": "2.2.6",
     "@mixmark-io/domino": "2.2.0",
     "@modelcontextprotocol/sdk": "1.30.0",
