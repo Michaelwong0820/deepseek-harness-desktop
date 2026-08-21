@@ -31,7 +31,8 @@ jobs:
       - name: Build Windows package
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-        run: npx electron-builder --win nsis --x64
+        # --publish never: 只构建，不尝试发布到 GitHub Releases（避免需要 GH_TOKEN）
+        run: npx electron-builder --win nsis --x64 --publish never
 
       - name: Launch app and wait for DSH service
         shell: pwsh
