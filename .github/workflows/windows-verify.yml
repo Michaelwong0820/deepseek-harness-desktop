@@ -77,6 +77,13 @@ jobs:
           # 2. koffi win32-x64 native module
           if (!(Test-Path "$app\node_modules\@koromix\koffi-win32-x64\win32_x64\koffi.node")) { $errors += "koffi win32-x64 missing" }
 
+          # 2b. sharp win32-x64 (attachment image processing) with libvips DLL
+          if (!(Test-Path "$app\node_modules\@img\sharp-win32-x64\lib\sharp-win32-x64-*.node")) { $errors += "sharp win32-x64 missing" }
+          if (!(Test-Path "$app\node_modules\@img\sharp-win32-x64\lib\libvips-42.dll")) { $errors += "sharp libvips DLL missing" }
+
+          # 2c. node-addon-require-builtin win32-x64-msvc (loader's builtin require)
+          if (!(Test-Path "$app\node_modules\node-addon-require-builtin-win32-x64-msvc")) { $errors += "node-addon-require-builtin win32 missing" }
+
           # 3. @deepseek-ai package count (expect 195)
           $count = (Get-ChildItem "$app\node_modules\@deepseek-ai" -Directory).Count
           if ($count -lt 190) { $errors += "@deepseek-ai package count low: $count" }
