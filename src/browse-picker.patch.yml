@@ -1,8 +1,10 @@
 # 固定使用 browse 目录选择器（跨平台稳定）
-# 说明：patch 的 name 字段是"校验匹配"用的（必须与现有 entry 同名，否则被跳过），
-# 所以必须先 disabled 旧的 auto 后端，再用 insert 挂载 browse 后端。
+# directory-picker 是"双面"组件：host 后端 + client UI surface 都要挂，
+# 缺 client 端会导致界面点击无响应。auto 后端同时挂两个，这里手动补全。
 - id: directory-picker
   disabled: true
 - insert:
     - id: directory-picker-browse
       name: '@deepseek-ai/dsh-host-directory-picker-browse'
+    - id: directory-picker-browse-ui
+      name: '@deepseek-ai/dsh-client-ui-directory-picker-browse'

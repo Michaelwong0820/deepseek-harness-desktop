@@ -65,6 +65,37 @@ jobs:
           if ($content -match "directory picker failed") { throw "directory picker failed" }
           Write-Host "LOG OK: builtin dsh, no known errors"
 
+      - name: Verify package integrity (parity with macOS)
+        shell: pwsh
+        run: |
+          $app = "dist\win-unpacked\resources\app"
+          $errors = @()
+
+          # 1. builtin dsh
+          if (!(Test-Path "$app\node_modules\@deepseek-ai\dsh\lib\bin.js")) { $errors += "builtin dsh missing" }
+
+          # 2. koffi win32-x64 native module
+          if (!(Test-Path "$app\node_modules\@koromix\koffi-win32-x64\win32_x64\koffi.node")) { $errors += "koffi win32-x64 missing" }
+
+          # 3. @deepseek-ai package count (expect 195)
+          $count = (Get-ChildItem "$app\node_modules\@deepseek-ai" -Directory).Count
+          if ($count -lt 190) { $errors += "@deepseek-ai package count low: $count" }
+
+          # 4. browse picker patch (dual-face: host + client UI)
+          $patch = Get-Content "$app\src\browse-picker.patch.yml" -Raw
+          if ($patch -notmatch "dsh-host-directory-picker-browse") { $errors += "patch missing host browse" }
+          if ($patch -notmatch "dsh-client-ui-directory-picker-browse") { $errors += "patch missing client UI browse" }
+
+          # 5. main.js critical logic
+          $main = Get-Content "$app\src\main.js" -Raw
+          if ($main -notmatch "expose-internals") { $errors += "main.js missing --expose-internals" }
+          if ($main -notmatch "browse-picker.patch.yml") { $errors += "main.js missing picker patch reference" }
+
+          if ($errors.Count -gt 0) {
+            throw "Package integrity check FAILED:`n" + ($errors -join "`n")
+          }
+          Write-Host "PACKAGE INTEGRITY OK (builtin dsh / koffi / picker patch / main.js)"
+
       - name: Stop app
         shell: pwsh
         run: |

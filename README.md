@@ -144,3 +144,12 @@ dsh-desktop/
   reporting a result` —— 原生目录对话框 worker 在 Electron 内置模式下
   （ELECTRON_RUN_AS_NODE）不可靠。改为固定使用 **browse 模式**
   （`--patch src/browse-picker.patch.yml`，WebView 内文件浏览），跨平台稳定
+
+---
+
+## v0.5.5 更新（目录选择器双面修复 + 一致性保障）
+
+- **修复 Windows 点选工作区无响应**：browse patch 补上 client UI surface
+  （directory-picker 是 host 端 + client 端双面组件，之前只挂了 host 端）
+- **CI 增加包完整性检查**：真 Windows 上自动验证内置 dsh / koffi 原生模块 /
+  browse patch 双面 / main.js 关键逻辑，保证 Windows 与 macOS 行为一致

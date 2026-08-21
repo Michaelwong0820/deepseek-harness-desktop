@@ -1,6 +1,6 @@
 {
   "name": "dsh-desktop",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "DeepSeek Harness 桌面端 - 常驻托盘 + 全局快捷键唤起",
   "main": "src/main.js",
   "scripts": {
