@@ -1,0 +1,136 @@
+- generic [ref=f6e2]:
+  - generic [ref=f6e6]:
+    - link "跳到主内容" [ref=f6e7] [cursor=pointer]:
+      - /url: "#content"
+    - banner [ref=f6e8]:
+      - generic [ref=f6e9]:
+        - button "Toggle Sidebar" [ref=f6e10] [cursor=pointer]
+        - link "返回主页" [ref=f6e12] [cursor=pointer]:
+          - /url: /
+          - img "徽标" [ref=f6e14]
+          - generic [ref=f6e15]: 颂拓AI
+        - generic [ref=f6e16]:
+          - navigation [ref=f6e18]:
+            - link "控制台" [ref=f6e19] [cursor=pointer]:
+              - /url: /dashboard
+            - link "模型广场" [ref=f6e20] [cursor=pointer]:
+              - /url: /pricing
+            - link "排行榜" [ref=f6e21] [cursor=pointer]:
+              - /url: /rankings
+          - button "搜索" [ref=f6e22] [cursor=pointer]:
+            - generic:
+              - generic: ⌘
+              - text: K
+          - button "通知" [ref=f6e24] [cursor=pointer]
+          - button "更改语言" [ref=f6e25] [cursor=pointer]
+          - button "打开主题设置" [ref=f6e27] [cursor=pointer]
+          - button "R" [ref=f6e28] [cursor=pointer]
+    - generic [ref=f6e31]:
+      - generic [ref=f6e34]:
+        - generic [ref=f6e36]:
+          - generic [ref=f6e37]:
+            - generic [ref=f6e38]: 聊天
+            - list [ref=f6e39]:
+              - listitem [ref=f6e40]:
+                - link "游乐场" [ref=f6e41] [cursor=pointer]:
+                  - /url: /playground
+              - listitem [ref=f6e45]:
+                - button "聊天" [ref=f6e46] [cursor=pointer]
+          - generic [ref=f6e52]:
+            - generic [ref=f6e53]: 常规
+            - list [ref=f6e54]:
+              - listitem [ref=f6e55]:
+                - link "概览" [ref=f6e56] [cursor=pointer]:
+                  - /url: /dashboard/overview
+              - listitem [ref=f6e60]:
+                - link "数据看板" [ref=f6e61] [cursor=pointer]:
+                  - /url: /dashboard/models
+              - listitem [ref=f6e68]:
+                - link "API 密钥" [ref=f6e69] [cursor=pointer]:
+                  - /url: /keys
+              - listitem [ref=f6e75]:
+                - link "使用日志" [ref=f6e76] [cursor=pointer]:
+                  - /url: /usage-logs/common
+              - listitem [ref=f6e81]:
+                - link "任务日志" [ref=f6e82] [cursor=pointer]:
+                  - /url: /usage-logs/task
+          - generic [ref=f6e87]:
+            - generic [ref=f6e88]: 个人
+            - list [ref=f6e89]:
+              - listitem [ref=f6e90]:
+                - link "个人资料" [ref=f6e91] [cursor=pointer]:
+                  - /url: /profile
+          - generic [ref=f6e96]:
+            - generic [ref=f6e97]: 管理员
+            - list [ref=f6e98]:
+              - listitem [ref=f6e99]:
+                - link "渠道" [ref=f6e100] [cursor=pointer]:
+                  - /url: /channels
+              - listitem [ref=f6e108]:
+                - link "模型" [ref=f6e109] [cursor=pointer]:
+                  - /url: /models/metadata
+              - listitem [ref=f6e114]:
+                - link "用户" [ref=f6e115] [cursor=pointer]:
+                  - /url: /users
+              - listitem [ref=f6e122]:
+                - link "兑换码" [ref=f6e123] [cursor=pointer]:
+                  - /url: /redemption-codes
+              - listitem [ref=f6e127]:
+                - link "订阅" [ref=f6e128] [cursor=pointer]:
+                  - /url: /subscriptions
+              - listitem [ref=f6e132]:
+                - link "系统信息" [ref=f6e133] [cursor=pointer]:
+                  - /url: /system-info
+              - listitem [ref=f6e146]:
+                - link "系统设置" [ref=f6e147] [cursor=pointer]:
+                  - /url: /system-settings/site
+        - button "Toggle Sidebar" [ref=f6e152]
+      - main [ref=f6e153]:
+        - main [ref=f6e155]:
+          - generic [ref=f6e157]:
+            - heading "渠道" [level=2] [ref=f6e159]
+            - generic [ref=f6e163]:
+              - generic [ref=f6e164]:
+                - generic [ref=f6e168] [cursor=pointer]: 批量操作
+                - switch "批量操作" [ref=f6e169]
+                - checkbox [ref=f6e170]
+              - generic [ref=f6e171]:
+                - generic [ref=f6e176] [cursor=pointer]: 标签模式
+                - switch "标签模式" [ref=f6e177]
+                - checkbox [ref=f6e178]
+              - generic [ref=f6e179]:
+                - generic [ref=f6e182] [cursor=pointer]: 使用 ID 排序
+                - switch "使用 ID 排序" [ref=f6e183]
+                - checkbox [ref=f6e184]
+              - button "创建渠道" [ref=f6e186] [cursor=pointer]
+              - button [ref=f6e188] [cursor=pointer]
+          - generic [ref=f6e191]:
+            - textbox "按名称、ID 或密钥筛选..." [ref=f6e192]
+            - textbox "按模型筛选..." [ref=f6e193]
+            - button "状态" [ref=f6e194] [cursor=pointer]
+            - button "类型" [ref=f6e195] [cursor=pointer]
+            - button "分组" [ref=f6e196] [cursor=pointer]
+            - generic [ref=f6e197]:
+              - button "隐藏" [ref=f6e198] [cursor=pointer]
+              - group "视图模式" [ref=f6e199]:
+                - button [pressed] [ref=f6e200] [cursor=pointer]
+                - button [ref=f6e203] [cursor=pointer]
+              - button "查看" [ref=f6e206] [cursor=pointer]
+          - generic [ref=f6e313]:
+            - generic [ref=f6e314]:
+              - generic [ref=f6e315]: 总计：
+              - generic [ref=f6e316]: "0"
+            - generic [ref=f6e317]:
+              - paragraph [ref=f6e318]: 每页行数
+              - combobox [ref=f6e319] [cursor=pointer]:
+                - generic [ref=f6e320]: "20"
+              - textbox [ref=f6e321]: "20"
+            - generic [ref=f6e322]:
+              - button "前往首页" [disabled]
+              - button "前往上一页" [disabled]
+              - button "前往下一页" [disabled]
+              - button "前往末页" [disabled]
+  - generic [ref=f6e323]:
+    - heading "Command Palette" [level=2] [ref=f6e324]
+    - paragraph [ref=f6e325]: Search for a command to run...
+  - region "Notifications alt+T"

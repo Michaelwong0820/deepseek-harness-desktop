@@ -1,0 +1,240 @@
+- generic [ref=f21e2]:
+  - generic [ref=f21e5]:
+    - link "跳到主内容" [ref=f21e6] [cursor=pointer]:
+      - /url: "#content"
+    - banner [ref=f21e7]:
+      - generic [ref=f21e8]:
+        - button "Toggle Sidebar" [ref=f21e9] [cursor=pointer]
+        - link "返回主页" [ref=f21e11] [cursor=pointer]:
+          - /url: /
+          - img "徽标" [ref=f21e13]
+          - generic [ref=f21e14]: 颂拓AI
+        - generic [ref=f21e15]:
+          - navigation [ref=f21e17]:
+            - link "控制台" [ref=f21e18] [cursor=pointer]:
+              - /url: /dashboard
+            - link "模型广场" [ref=f21e19] [cursor=pointer]:
+              - /url: /pricing
+            - link "排行榜" [ref=f21e20] [cursor=pointer]:
+              - /url: /rankings
+          - button "搜索" [ref=f21e21] [cursor=pointer]:
+            - generic:
+              - generic: ⌘
+              - text: K
+          - button "通知" [ref=f21e23] [cursor=pointer]
+          - button "更改语言" [ref=f21e24] [cursor=pointer]
+          - button "打开主题设置" [ref=f21e26] [cursor=pointer]
+          - button "R" [ref=f21e27] [cursor=pointer]
+    - generic [ref=f21e30]:
+      - generic [ref=f21e33]:
+        - generic [ref=f21e35]:
+          - generic [ref=f21e36]:
+            - generic [ref=f21e37]: 聊天
+            - list [ref=f21e38]:
+              - listitem [ref=f21e39]:
+                - link "游乐场" [ref=f21e40] [cursor=pointer]:
+                  - /url: /playground
+              - listitem [ref=f21e44]:
+                - button "聊天" [ref=f21e45] [cursor=pointer]
+          - generic [ref=f21e51]:
+            - generic [ref=f21e52]: 常规
+            - list [ref=f21e53]:
+              - listitem [ref=f21e54]:
+                - link "概览" [ref=f21e55] [cursor=pointer]:
+                  - /url: /dashboard/overview
+              - listitem [ref=f21e59]:
+                - link "数据看板" [ref=f21e60] [cursor=pointer]:
+                  - /url: /dashboard/models
+              - listitem [ref=f21e67]:
+                - link "API 密钥" [ref=f21e68] [cursor=pointer]:
+                  - /url: /keys
+              - listitem [ref=f21e74]:
+                - link "使用日志" [ref=f21e75] [cursor=pointer]:
+                  - /url: /usage-logs/common
+              - listitem [ref=f21e80]:
+                - link "任务日志" [ref=f21e81] [cursor=pointer]:
+                  - /url: /usage-logs/task
+          - generic [ref=f21e86]:
+            - generic [ref=f21e87]: 个人
+            - list [ref=f21e88]:
+              - listitem [ref=f21e89]:
+                - link "个人资料" [ref=f21e90] [cursor=pointer]:
+                  - /url: /profile
+          - generic [ref=f21e95]:
+            - generic [ref=f21e96]: 管理员
+            - list [ref=f21e97]:
+              - listitem [ref=f21e98]:
+                - link "渠道" [ref=f21e99] [cursor=pointer]:
+                  - /url: /channels
+              - listitem [ref=f21e107]:
+                - link "模型" [ref=f21e108] [cursor=pointer]:
+                  - /url: /models/metadata
+              - listitem [ref=f21e113]:
+                - link "用户" [ref=f21e114] [cursor=pointer]:
+                  - /url: /users
+              - listitem [ref=f21e121]:
+                - link "兑换码" [ref=f21e122] [cursor=pointer]:
+                  - /url: /redemption-codes
+              - listitem [ref=f21e126]:
+                - link "订阅" [ref=f21e127] [cursor=pointer]:
+                  - /url: /subscriptions
+              - listitem [ref=f21e131]:
+                - link "系统信息" [ref=f21e132] [cursor=pointer]:
+                  - /url: /system-info
+              - listitem [ref=f21e145]:
+                - link "系统设置" [ref=f21e146] [cursor=pointer]:
+                  - /url: /system-settings/site
+        - button "Toggle Sidebar" [ref=f21e151]
+      - main [ref=f21e152]:
+        - main [ref=f21e154]:
+          - generic [ref=f21e156]:
+            - heading "API 密钥" [level=2] [ref=f21e158]
+            - button "创建 API 密钥" [ref=f21e161] [cursor=pointer]
+          - generic [ref=f21e163]:
+            - generic [ref=f21e164]:
+              - textbox "按名称筛选..." [ref=f21e165]
+              - textbox "按 API 密钥筛选..." [ref=f21e166]
+              - button "状态" [ref=f21e167] [cursor=pointer]
+              - generic [ref=f21e168]:
+                - button "查看" [expanded] [ref=f21e169] [cursor=pointer]
+                - menu "查看" [active] [ref=f21e366]:
+                  - group "切换列" [ref=f21e367]:
+                    - text: 切换列
+                    - menuitemcheckbox "名称" [checked] [ref=f21e368]
+                    - menuitemcheckbox "状态" [checked] [ref=f21e369]
+                    - menuitemcheckbox "API 密钥" [checked] [ref=f21e370]
+                    - menuitemcheckbox "额度" [checked] [ref=f21e371]
+                    - menuitemcheckbox "分组" [checked] [ref=f21e372]
+                    - menuitemcheckbox "模型" [checked] [ref=f21e373]
+                    - menuitemcheckbox "IP 限制" [checked] [ref=f21e374]
+                    - menuitemcheckbox "创建时间" [checked] [ref=f21e375]
+                    - menuitemcheckbox "最后使用时间" [checked] [ref=f21e376]
+                    - menuitemcheckbox "过期" [checked] [ref=f21e377]
+            - table [ref=f21e173]:
+              - rowgroup [ref=f21e187]:
+                - row [ref=f21e188]:
+                  - columnheader [ref=f21e189]:
+                    - checkbox "Select all" [ref=f21e190]
+                    - checkbox [ref=f21e191]
+                  - columnheader "名称" [ref=f21e192]
+                  - columnheader "状态" [ref=f21e194]
+                  - columnheader "API 密钥" [ref=f21e196]
+                  - columnheader "额度" [ref=f21e198]
+                  - columnheader "分组" [ref=f21e200]
+                  - columnheader "模型" [ref=f21e202]
+                  - columnheader "IP 限制" [ref=f21e204]
+                  - columnheader "创建时间" [ref=f21e206]
+                  - columnheader "最后使用时间" [ref=f21e208]
+                  - columnheader "过期" [ref=f21e210]
+                  - columnheader "操作" [ref=f21e212]
+              - rowgroup [ref=f21e213]:
+                - row [ref=f21e214]:
+                  - cell [ref=f21e215]:
+                    - checkbox "Select row" [ref=f21e216]
+                    - checkbox [ref=f21e217]
+                  - cell "员工接入测试" [ref=f21e218]
+                  - cell "已启用" [ref=f21e219]
+                  - cell [ref=f21e222]:
+                    - generic [ref=f21e223]:
+                      - button "sk-FQLJ**********RN4e" [ref=f21e224] [cursor=pointer]
+                      - button [ref=f21e226] [cursor=pointer]
+                  - cell "¥0 ¥0 0%" [ref=f21e227]:
+                    - generic [ref=f21e228]:
+                      - generic [ref=f21e229]:
+                        - generic [ref=f21e230]: ¥0
+                        - generic [ref=f21e231]: ¥0
+                      - progressbar [ref=f21e232]: x
+                  - cell "用户分组" [ref=f21e234]:
+                    - generic "用户分组" [ref=f21e237]
+                  - cell "无限制" [ref=f21e239]
+                  - cell "无限制" [ref=f21e242]
+                  - cell [ref=f21e245]:
+                    - time [ref=f21e246]: 刚刚
+                  - cell [ref=f21e247]:
+                    - time [ref=f21e248]: 刚刚
+                  - cell "永不" [ref=f21e249]
+                  - cell [ref=f21e252]:
+                    - generic [ref=f21e253]:
+                      - button "禁用" [ref=f21e254] [cursor=pointer]
+                      - button "编辑" [ref=f21e255] [cursor=pointer]
+                      - button "打开菜单" [ref=f21e256] [cursor=pointer]
+                - row [ref=f21e257]:
+                  - cell [ref=f21e258]:
+                    - checkbox "Select row" [ref=f21e259]
+                    - checkbox [ref=f21e260]
+                  - cell "员工接入测试" [ref=f21e261]
+                  - cell "已启用" [ref=f21e262]
+                  - cell [ref=f21e265]:
+                    - generic [ref=f21e266]:
+                      - button "sk-jUBo**********ITMg" [ref=f21e267] [cursor=pointer]
+                      - button [ref=f21e269] [cursor=pointer]
+                  - cell "¥0 ¥0 0%" [ref=f21e270]:
+                    - generic [ref=f21e271]:
+                      - generic [ref=f21e272]:
+                        - generic [ref=f21e273]: ¥0
+                        - generic [ref=f21e274]: ¥0
+                      - progressbar [ref=f21e275]: x
+                  - cell "用户分组" [ref=f21e277]:
+                    - generic "用户分组" [ref=f21e280]
+                  - cell "无限制" [ref=f21e282]
+                  - cell "无限制" [ref=f21e285]
+                  - cell [ref=f21e288]:
+                    - time [ref=f21e289]: 刚刚
+                  - cell [ref=f21e290]:
+                    - time [ref=f21e291]: 刚刚
+                  - cell "永不" [ref=f21e292]
+                  - cell [ref=f21e295]:
+                    - generic [ref=f21e296]:
+                      - button "禁用" [ref=f21e297] [cursor=pointer]
+                      - button "编辑" [ref=f21e298] [cursor=pointer]
+                      - button "打开菜单" [ref=f21e299] [cursor=pointer]
+                - row [ref=f21e300]:
+                  - cell [ref=f21e301]:
+                    - checkbox "Select row" [ref=f21e302]
+                    - checkbox [ref=f21e303]
+                  - cell "千问" [ref=f21e304]
+                  - cell "已启用" [ref=f21e305]
+                  - cell [ref=f21e308]:
+                    - generic [ref=f21e309]:
+                      - button "sk-LYly**********yykS" [ref=f21e310] [cursor=pointer]
+                      - button [ref=f21e312] [cursor=pointer]
+                  - cell [ref=f21e313]:
+                    - button "无限制; 已使用： ¥0.0403" [ref=f21e314]:
+                      - generic "无限制" [ref=f21e315]
+                  - cell "default 1x" [ref=f21e317]:
+                    - generic [ref=f21e320]:
+                      - generic "default" [ref=f21e322]
+                      - generic [ref=f21e324]: 1x
+                  - cell "无限制" [ref=f21e326]
+                  - cell "无限制" [ref=f21e329]
+                  - cell [ref=f21e332]:
+                    - time [ref=f21e333]: 2小时前
+                  - cell [ref=f21e334]:
+                    - time [ref=f21e335]: 2小时前
+                  - cell "永不" [ref=f21e336]
+                  - cell [ref=f21e339]:
+                    - generic [ref=f21e340]:
+                      - button "禁用" [ref=f21e341] [cursor=pointer]
+                      - button "编辑" [ref=f21e342] [cursor=pointer]
+                      - button "打开菜单" [ref=f21e343] [cursor=pointer]
+          - generic [ref=f21e346]:
+            - generic [ref=f21e347]:
+              - generic [ref=f21e348]: 总计：
+              - generic [ref=f21e349]: "3"
+            - generic [ref=f21e350]:
+              - paragraph [ref=f21e351]: 每页行数
+              - combobox [ref=f21e352] [cursor=pointer]:
+                - generic [ref=f21e353]: "20"
+              - textbox [ref=f21e354]: "20"
+            - generic [ref=f21e355]:
+              - button "前往首页" [disabled]
+              - button "前往上一页" [disabled]
+              - button "前往第 1 页 1" [ref=f21e357] [cursor=pointer]:
+                - generic [ref=f21e358]: 前往第 1 页
+                - text: "1"
+              - button "前往下一页" [disabled]
+              - button "前往末页" [disabled]
+  - generic [ref=f21e359]:
+    - heading "Command Palette" [level=2] [ref=f21e360]
+    - paragraph [ref=f21e361]: Search for a command to run...
+  - region "Notifications alt+T"

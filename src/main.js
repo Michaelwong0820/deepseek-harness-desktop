@@ -291,7 +291,8 @@ async function ensureDshWeb() {
   try {
     if (inv.useNodeMode) {
       // 内置 dsh：直接用 Electron 二进制以 Node 模式运行（无需 shell/系统 node）
-      dshProcess = spawn(process.execPath, [...inv.args, 'web'], {
+      // --expose-internals: HMR 插件在 Node 24 下强制要求（否则报错退出）
+      dshProcess = spawn(process.execPath, ['--expose-internals', ...inv.args, 'web'], {
         cwd: os.homedir(),
         env: { ...process.env, PATH: shellPath, ELECTRON_RUN_AS_NODE: '1' },
         stdio: ['ignore', logFd, logFd],

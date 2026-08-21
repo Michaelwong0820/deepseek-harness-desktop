@@ -117,3 +117,12 @@ dsh-desktop/
 - 解决 Windows 首次安装"npx 下载超时"问题（不再依赖 npx 兜底）
 - 依赖版本全部锁定精确版本（复刻自验证可用的 npx 缓存树，517 包）
 - 构建配置：`asar: false`（避免 ESM 模块在 asar 内解析失败）+ `npmRebuild: false`（N-API 模块免 rebuild）
+
+---
+
+## v0.5.1 更新（HMR 修复）
+
+- **修复内置 dsh 启动失败**：Electron 的 Node 模式（ELECTRON_RUN_AS_NODE）默认拿不到
+  Node 内部模块，HMR 插件报 `--expose-internals is required` → spawn 时显式传
+  `--expose-internals` flag
+- 注：外部手动 `node dsh web` 无此问题（系统 Node 默认可用 internal），Node v24 实测正常

@@ -1,0 +1,155 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - button "新建会话" [ref=e9] [cursor=pointer]
+      - button "收起侧边栏" [ref=e31] [cursor=pointer]
+    - button "新建会话" [ref=e34] [cursor=pointer]:
+      - generic [ref=e37]: 新会话
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]: 工作区
+        - generic [ref=e44]:
+          - button "搜索会话" [ref=e45] [cursor=pointer]
+          - textbox "搜索会话…"
+        - generic [ref=e49]:
+          - button "视图选项" [ref=e51] [cursor=pointer]
+          - button "添加工作区" [ref=e54] [cursor=pointer]
+      - tree "会话" [ref=e60]:
+        - generic [ref=e61]:
+          - treeitem "dsh-desktop" [expanded] [ref=e63] [cursor=pointer]
+          - treeitem "进行中 分析公司内容模型中转站需求 2分钟" [ref=e811] [cursor=pointer]:
+            - generic [ref=e147]: 进行中
+            - generic [ref=e158]: 分析公司内容模型中转站需求
+            - generic [ref=e159]: 2分钟
+          - treeitem "你好，请回复：中转站模型测 4分钟" [selected] [ref=e812] [cursor=pointer]:
+            - generic [ref=e144]: 你好，请回复：中转站模型测
+            - generic [ref=e478]: 4分钟
+        - treeitem "suunto-ui-admin-vue3" [ref=e71] [cursor=pointer]
+        - treeitem "suunto-mall-h5" [ref=e79] [cursor=pointer]
+    - generic [ref=e87]:
+      - button "设置" [expanded] [ref=e88] [cursor=pointer]
+      - dialog "设置" [ref=e614]:
+        - navigation [ref=e615]:
+          - generic [ref=e616]: 设置
+          - generic [ref=e617]:
+            - button "通用设置" [ref=e618] [cursor=pointer]
+            - button "模型" [ref=e624] [cursor=pointer]
+            - button "插件" [ref=e629] [cursor=pointer]
+            - button "Agent 预设" [ref=e633] [cursor=pointer]
+        - generic [ref=e640]:
+          - generic [ref=e641]:
+            - button "打开配置文件" [ref=e645] [cursor=pointer]
+            - button "关闭" [ref=e646] [cursor=pointer]
+          - generic [ref=e708]:
+            - heading "模型" [level=2] [ref=e709]
+            - paragraph [ref=e710]: 填入各提供方的 API 密钥即可使用其模型。
+            - list [ref=e711]:
+              - listitem [ref=e712]:
+                - generic [ref=e713]:
+                  - generic [ref=e714]:
+                    - generic [ref=e715]: DeepSeek
+                    - img "API 密钥已配置" [ref=e716]
+                  - button "编辑 DeepSeek (deepseek-official)" [ref=e718] [cursor=pointer]: 编辑
+              - listitem [ref=e719]:
+                - generic [ref=e720]:
+                  - generic [ref=e721]:
+                    - generic [ref=e722]: 颂拓中转站
+                    - generic [ref=e723]: 自定义
+                    - img "API 密钥已配置" [ref=e724]
+                  - generic [ref=e725]:
+                    - button "编辑 颂拓中转站 (songtuo-relay)" [ref=e726] [cursor=pointer]: 编辑
+                    - button "删除 颂拓中转站 (songtuo-relay)" [ref=e727] [cursor=pointer]: 删除
+            - generic [ref=e736]:
+              - generic [ref=e737]: 自定义提供方
+              - generic [ref=e739]:
+                - generic [ref=e740]: Provider ID
+                - textbox "Provider ID" [ref=e741]:
+                  - /placeholder: acme-gateway
+                  - text: songtuo-probe
+              - paragraph [ref=e742]: 以小写字母开头的标识，在请求中唯一标识该提供方，并用于派生凭据名。
+              - generic [ref=e743]:
+                - generic [ref=e744]: 显示名称
+                - textbox "显示名称" [ref=e745]:
+                  - /placeholder: songtuo-probe
+                  - text: 颂拓中转站
+              - generic [ref=e746]:
+                - generic [ref=e747]: API 地址
+                - textbox "API 地址" [ref=e748]:
+                  - /placeholder: https://gateway.example/v1
+                  - text: http://172.16.5.234:3000/v1
+              - generic [ref=e749]:
+                - generic [ref=e750]: API 协议
+                - combobox "API 协议" [ref=e751] [cursor=pointer]:
+                  - option "openai-completions" [selected]
+                  - option "openai-responses"
+                  - option "anthropic-messages"
+              - generic [ref=e752]:
+                - generic [ref=e753]: API 密钥
+                - textbox "API 密钥" [ref=e754]:
+                  - /placeholder: 输入 API 密钥
+                  - text: sk-LYlyIkm5B9xH3YrU0sFEKqE7FzkExPGy9tA5x4PBN3WoyykS
+              - region "模型目录" [ref=e755]:
+                - generic [ref=e756]:
+                  - generic [ref=e757]: 模型目录
+                  - button "获取可用模型" [ref=e759] [cursor=pointer]
+                - paragraph [ref=e760]: 模型选择器中将不显示任何模型；目录外 ID 仍可直接发送。
+                - button "添加模型" [ref=e761] [cursor=pointer]
+              - paragraph [ref=e767]: 自定义提供方至少需要一个模型。
+              - generic [ref=e762]:
+                - button "取消" [ref=e763] [cursor=pointer]
+                - button "创建提供方" [disabled] [ref=e764]
+  - generic [ref=e97]:
+    - banner [ref=e480]:
+      - generic [ref=e481]:
+        - generic [ref=e482]:
+          - navigation "会话层级" [ref=e483]:
+            - button "你好，请回复：中转站模型测" [disabled] [ref=e485]
+          - generic "功能完整的编码 Agent，支持文件编辑、Shell、文件与网页检索、Skills、计划、目标、子代理和工作流。" [ref=e488]: 标准模式
+        - button "Session log" [ref=e496] [cursor=pointer]
+      - tablist [ref=e500]:
+        - tab "对话" [selected] [ref=e501] [cursor=pointer]
+        - tab "轨迹" [ref=e502] [cursor=pointer]
+    - generic [ref=e98]:
+      - generic [ref=e508]:
+        - generic [ref=e511]:
+          - generic [ref=e512]: 你好，请回复：中转站模型测试成功
+          - generic [ref=e515]:
+            - generic [ref=e516]: 11:47
+            - button "复制" [ref=e517] [cursor=pointer]
+        - button "上下文注入 @deepseek-ai/dsh-system-prompt" [ref=e523] [cursor=pointer]:
+          - generic [ref=e532]: 上下文注入
+          - generic [ref=e534]: "@deepseek-ai/dsh-system-prompt"
+        - button "上下文注入 skill-catalog" [ref=e538] [cursor=pointer]:
+          - generic [ref=e547]: 上下文注入
+          - generic [ref=e549]: skill-catalog
+        - generic [ref=e558]:
+          - 'button "Think The user is asking me to reply with a specific message: \"中转站模型测试成功\". This is a simple test/check request." [ref=e561] [cursor=pointer]':
+            - generic [ref=e569]: Think
+            - generic [ref=e571]: "The user is asking me to reply with a specific message: \"中转站模型测试成功\". This is a simple test/check request."
+          - paragraph [ref=e573]: 中转站模型测试成功 ✅
+        - generic [ref=e577]:
+          - button "复制" [ref=e578] [cursor=pointer]
+          - generic [ref=e581]:
+            - button "好的回答" [ref=e582] [cursor=pointer]
+            - button "有问题的回答" [ref=e585] [cursor=pointer]
+          - button "在新对话中分支" [ref=e588] [cursor=pointer]
+          - generic [ref=e591]: 11:47 · 用时 1秒 · 首 token 1.1秒 · 123 tok/s
+      - generic [ref=e129]:
+        - generic [ref=e130]:
+          - textbox "给智能体发消息" [ref=e551]
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - button "命令" [ref=e164] [cursor=pointer]
+              - button "访问模式，当前：Full access" [ref=e169] [cursor=pointer]:
+                - generic [ref=e175]: Full access
+            - generic [ref=e136]:
+              - button "选择模型，当前 Qwen3.7 Flash" [ref=e466] [cursor=pointer]:
+                - generic [ref=e182]: Qwen3.7 Flash
+              - button "上下文已用 3%" [ref=e593] [cursor=pointer]
+              - button "发送消息" [disabled] [ref=e597]
+        - generic [ref=e599]: 1 轮 · 1 步| LLM 1.4s| 首 token 平均 1.1s · 123 tok/s| 缓存命中 0%| 输入 8.4K tok · 输出 38 tok
+  - generic [ref=e190]:
+    - generic [ref=e191]:
+      - generic: 详情
+      - button "关闭详情" [ref=e192] [cursor=pointer]
+    - generic [ref=e195]: 点击消息流中的工具行查看详情

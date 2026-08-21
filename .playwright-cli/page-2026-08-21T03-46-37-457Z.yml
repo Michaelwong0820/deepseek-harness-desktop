@@ -1,0 +1,60 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - button "新建会话" [ref=e9] [cursor=pointer]
+      - button "收起侧边栏" [ref=e31] [cursor=pointer]
+    - button "新建会话" [ref=e34] [cursor=pointer]:
+      - generic [ref=e37]: 新会话
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]: 工作区
+        - generic [ref=e44]:
+          - button "搜索会话" [ref=e45] [cursor=pointer]
+          - textbox "搜索会话…"
+        - generic [ref=e49]:
+          - button "视图选项" [ref=e51] [cursor=pointer]
+          - button "添加工作区" [ref=e54] [cursor=pointer]
+      - tree "会话" [ref=e60]:
+        - generic [ref=e61]:
+          - treeitem "dsh-desktop" [expanded] [ref=e63] [cursor=pointer]
+          - treeitem "新会话" [selected] [ref=e142] [cursor=pointer]
+          - treeitem "进行中 分析公司内容模型中转站需求 2分钟" [ref=e196] [cursor=pointer]:
+            - generic [ref=e147]: 进行中
+            - generic [ref=e158]: 分析公司内容模型中转站需求
+            - generic [ref=e159]: 2分钟
+        - treeitem "suunto-ui-admin-vue3" [ref=e71] [cursor=pointer]
+        - treeitem "suunto-mall-h5" [ref=e79] [cursor=pointer]
+    - button "设置" [ref=e88] [cursor=pointer]
+  - generic [ref=e102]:
+    - generic [ref=e105]:
+      - generic [ref=e109]: 探索未至之境
+      - generic [ref=e110]: 预览版
+    - generic [ref=e111]:
+      - button "选择工作区" [ref=e112] [cursor=pointer]:
+        - generic [ref=e115]: dsh-desktop
+      - button "标准模式" [ref=e120] [cursor=pointer]
+    - generic [ref=e130]:
+      - textbox "描述你想要构建的内容" [ref=e163]
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - button "命令" [ref=e164] [cursor=pointer]
+          - button "访问模式，当前：Full access" [ref=e169] [cursor=pointer]:
+            - generic [ref=e175]: Full access
+        - generic [ref=e136]:
+          - generic [ref=e180]:
+            - button "选择模型，当前 DeepSeek-V4-Flash，推理等级 High" [expanded] [active] [ref=e181] [cursor=pointer]:
+              - generic [ref=e182]: DeepSeek-V4-Flash
+              - generic [ref=e183]: High
+            - menu "模型与推理等级" [ref=e419]:
+              - menuitem "模型 DeepSeek-V4-Flash" [ref=e420] [cursor=pointer]:
+                - generic [ref=e421]: 模型
+                - generic [ref=e422]: DeepSeek-V4-Flash
+              - menuitem "推理等级 High" [ref=e425] [cursor=pointer]:
+                - generic [ref=e426]: 推理等级
+                - generic [ref=e427]: High
+          - button "发送消息" [disabled] [ref=e186]
+  - generic [ref=e190]:
+    - generic [ref=e191]:
+      - generic: 详情
+      - button "关闭详情" [ref=e192] [cursor=pointer]
+    - generic [ref=e195]: 点击消息流中的工具行查看详情

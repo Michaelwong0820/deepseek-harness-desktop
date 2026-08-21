@@ -1,0 +1,190 @@
+- generic [ref=e2]:
+  - generic [ref=e299]:
+    - link "跳到主内容" [ref=e300] [cursor=pointer]:
+      - /url: "#content"
+    - banner [ref=e301]:
+      - generic [ref=e302]:
+        - button "Toggle Sidebar" [ref=e303] [cursor=pointer]
+        - link "返回主页" [ref=e305] [cursor=pointer]:
+          - /url: /
+          - img "徽标" [ref=e307]
+          - generic [ref=e308]: 颂拓AI
+        - generic [ref=e309]:
+          - navigation [ref=e311]:
+            - link "控制台" [ref=e312] [cursor=pointer]:
+              - /url: /dashboard
+            - link "模型广场" [ref=e313] [cursor=pointer]:
+              - /url: /pricing
+            - link "排行榜" [ref=e314] [cursor=pointer]:
+              - /url: /rankings
+          - button "搜索" [ref=e315] [cursor=pointer]:
+            - generic:
+              - generic: ⌘
+              - text: K
+          - button "通知" [ref=e317] [cursor=pointer]
+          - button "更改语言" [ref=e318] [cursor=pointer]
+          - button "打开主题设置" [ref=e320] [cursor=pointer]
+          - button "R" [ref=e321] [cursor=pointer]
+    - generic [ref=e324]:
+      - generic [ref=e327]:
+        - generic [ref=e329]:
+          - generic [ref=e330]:
+            - generic [ref=e331]: 聊天
+            - list [ref=e332]:
+              - listitem [ref=e333]:
+                - link "游乐场" [ref=e334] [cursor=pointer]:
+                  - /url: /playground
+              - listitem [ref=e338]:
+                - button "聊天" [ref=e339] [cursor=pointer]
+          - generic [ref=e345]:
+            - generic [ref=e346]: 常规
+            - list [ref=e347]:
+              - listitem [ref=e348]:
+                - link "概览" [ref=e349] [cursor=pointer]:
+                  - /url: /dashboard/overview
+              - listitem [ref=e353]:
+                - link "数据看板" [ref=e354] [cursor=pointer]:
+                  - /url: /dashboard/models
+              - listitem [ref=e361]:
+                - link "API 密钥" [ref=e362] [cursor=pointer]:
+                  - /url: /keys
+              - listitem [ref=e368]:
+                - link "使用日志" [ref=e369] [cursor=pointer]:
+                  - /url: /usage-logs/common
+              - listitem [ref=e374]:
+                - link "任务日志" [ref=e375] [cursor=pointer]:
+                  - /url: /usage-logs/task
+          - generic [ref=e380]:
+            - generic [ref=e381]: 个人
+            - list [ref=e382]:
+              - listitem [ref=e383]:
+                - link "个人资料" [ref=e384] [cursor=pointer]:
+                  - /url: /profile
+          - generic [ref=e389]:
+            - generic [ref=e390]: 管理员
+            - list [ref=e391]:
+              - listitem [ref=e392]:
+                - link "渠道" [ref=e393] [cursor=pointer]:
+                  - /url: /channels
+              - listitem [ref=e401]:
+                - link "模型" [ref=e402] [cursor=pointer]:
+                  - /url: /models/metadata
+              - listitem [ref=e407]:
+                - link "用户" [ref=e408] [cursor=pointer]:
+                  - /url: /users
+              - listitem [ref=e415]:
+                - link "兑换码" [ref=e416] [cursor=pointer]:
+                  - /url: /redemption-codes
+              - listitem [ref=e420]:
+                - link "订阅" [ref=e421] [cursor=pointer]:
+                  - /url: /subscriptions
+              - listitem [ref=e425]:
+                - link "系统信息" [ref=e426] [cursor=pointer]:
+                  - /url: /system-info
+              - listitem [ref=e439]:
+                - link "系统设置" [ref=e440] [cursor=pointer]:
+                  - /url: /system-settings/site
+        - button "Toggle Sidebar" [ref=e445]
+      - main [ref=e446]:
+        - main [ref=e448]:
+          - heading "概览" [level=2] [ref=e452]
+          - generic [ref=e455]:
+            - generic [ref=e458]:
+              - generic: "const request = await client.responses.create({ model: 'gpt-4.1-mini', input: 'Start routing traffic', }) if (request.output_text) { console.log(request.output_text) }"
+              - generic [ref=e459]:
+                - generic [ref=e464]:
+                  - generic [ref=e465]:
+                    - heading "设置引导已完成" [level=3] [ref=e466]
+                    - generic [ref=e467]: 设置进度：3/3
+                  - paragraph [ref=e468]: 设置引导已收起，让用量信息保持在焦点位置。
+                - generic [ref=e469]:
+                  - button "API 密钥" [ref=e470] [cursor=pointer]
+                  - button "渠道" [ref=e472] [cursor=pointer]
+                  - button "使用日志" [ref=e474] [cursor=pointer]
+                  - button "定价" [ref=e476] [cursor=pointer]
+                  - button "显示设置引导" [ref=e478] [cursor=pointer]
+            - generic [ref=e480]:
+              - generic [ref=e481]:
+                - generic [ref=e483]:
+                  - heading "用量概览" [level=3] [ref=e484]
+                  - paragraph [ref=e485]: 监控余额、用量和请求量
+                - generic [ref=e486]:
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: 近 24 小时消耗
+                    - generic [ref=e495]:
+                      - generic [ref=e496]: ¥0.0404
+                      - paragraph [ref=e497]: 近 24 小时消耗量 (CNY)
+                  - generic [ref=e504]:
+                    - generic [ref=e505]: 历史使用情况
+                    - generic [ref=e512]:
+                      - generic [ref=e513]: ¥0.0403
+                      - paragraph [ref=e514]: 总消耗 (CNY)
+                  - generic [ref=e521]:
+                    - generic [ref=e522]: 请求计数
+                    - generic [ref=e528]:
+                      - generic [ref=e529]: "1"
+                      - paragraph [ref=e530]: 总请求数
+              - generic [ref=e536]:
+                - generic [ref=e537]:
+                  - generic [ref=e538]:
+                    - generic [ref=e539]: 剩余额度
+                    - generic [ref=e540]: 正常
+                  - generic [ref=e543]: ¥9,999.96
+                  - generic [ref=e544]:
+                    - generic [ref=e545]:
+                      - generic [ref=e546]: 近 24 小时消耗
+                      - generic [ref=e550]: ¥0.0404
+                    - generic [ref=e551]:
+                      - generic [ref=e552]: 可用时长
+                      - generic [ref=e557]: 999+ 天
+                - button "钱包" [ref=e558] [cursor=pointer]
+            - generic [ref=e560]:
+              - generic [ref=e561]:
+                - generic [ref=e563]:
+                  - generic [ref=e564]:
+                    - heading "性能健康" [level=3] [ref=e569]
+                    - generic [ref=e570]: 最近 24 小时的性能指标
+                  - generic [ref=e571]:
+                    - generic [ref=e572]:
+                      - generic [ref=e573]:
+                        - generic [ref=e574]: 成功率
+                        - generic [ref=e580]: 100.00%
+                      - generic [ref=e581]:
+                        - generic [ref=e582]: 平均延迟
+                        - generic [ref=e588]: 31.85s
+                      - generic [ref=e589]:
+                        - generic [ref=e590]: 吞吐量
+                        - generic [ref=e596]: 57.6 t/s
+                    - generic [ref=e597]:
+                      - generic [ref=e598]: 流量最高的模型
+                      - generic [ref=e600]:
+                        - generic [ref=e601]: qwen3.7-plus
+                        - generic [ref=e602]: 100.00%
+                - generic [ref=e606]:
+                  - generic [ref=e608]:
+                    - generic [ref=e609]: API 信息
+                    - generic [ref=e616]: 已配置路由和延迟检测
+                  - generic [ref=e617]: 未配置 API 路由
+                - generic [ref=e619]:
+                  - generic [ref=e621]:
+                    - generic [ref=e622]: 公告
+                    - generic [ref=e628]: 最新平台更新和通知
+                  - generic [ref=e629]: 目前暂无公告
+                - generic [ref=e631]:
+                  - generic [ref=e633]:
+                    - generic [ref=e634]: 常见问答
+                    - generic [ref=e640]: 访问与计费常见问题解答
+                  - generic [ref=e641]: 暂无 FAQ 条目
+              - generic [ref=e643]:
+                - generic [ref=e645]:
+                  - generic [ref=e646]: 运行时间
+                  - generic [ref=e651]: 来自 Uptime Kuma 的分组监控状态
+                - generic [ref=e652]: 未配置正常运行时间监控
+  - generic [ref=e653]:
+    - heading "Command Palette" [level=2] [ref=e654]
+    - paragraph [ref=e655]: Search for a command to run...
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=e656]:
+        - button "Close toast" [ref=e657] [cursor=pointer]
+        - generic [ref=e665]: 欢迎回来！

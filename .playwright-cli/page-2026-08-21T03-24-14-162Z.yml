@@ -1,0 +1,72 @@
+- generic [ref=f12e2]:
+  - generic [ref=f12e5]:
+    - link "跳到主内容" [ref=f12e6] [cursor=pointer]:
+      - /url: "#content"
+    - banner [ref=f12e7]:
+      - generic [ref=f12e8]:
+        - button "Toggle Sidebar" [ref=f12e9] [cursor=pointer]
+        - link "返回主页" [ref=f12e11] [cursor=pointer]:
+          - /url: /
+          - img "徽标" [ref=f12e13]
+          - generic [ref=f12e14]: 颂拓AI
+        - generic [ref=f12e15]:
+          - navigation [ref=f12e17]:
+            - link "控制台" [ref=f12e18] [cursor=pointer]:
+              - /url: /dashboard
+            - link "模型广场" [ref=f12e19] [cursor=pointer]:
+              - /url: /pricing
+            - link "排行榜" [ref=f12e20] [cursor=pointer]:
+              - /url: /rankings
+          - button "搜索" [ref=f12e21] [cursor=pointer]:
+            - generic:
+              - generic: ⌘
+              - text: K
+          - button "通知" [ref=f12e23] [cursor=pointer]
+          - button "更改语言" [ref=f12e24] [cursor=pointer]
+          - button "打开主题设置" [ref=f12e26] [cursor=pointer]
+          - button "R" [ref=f12e27] [cursor=pointer]
+    - generic [ref=f12e30]:
+      - generic [ref=f12e33]:
+        - list [ref=f12e35]:
+          - listitem [ref=f12e36]:
+            - link "返回控制台" [ref=f12e37] [cursor=pointer]:
+              - /url: /dashboard/overview
+        - generic [ref=f12e43]:
+          - generic [ref=f12e44]: 系统管理
+          - list [ref=f12e45]:
+            - listitem [ref=f12e46]:
+              - button "站点与品牌" [expanded] [ref=f12e47] [cursor=pointer]
+              - list [ref=f12e55]:
+                - listitem [ref=f12e56]:
+                  - link "系统信息" [ref=f12e57] [cursor=pointer]:
+                    - /url: /system-settings/site/system-info
+                - listitem [ref=f12e59]:
+                  - link "系统公告" [ref=f12e60] [cursor=pointer]:
+                    - /url: /system-settings/site/notice
+                - listitem [ref=f12e62]:
+                  - link "顶部导航" [ref=f12e63] [cursor=pointer]:
+                    - /url: /system-settings/site/header-navigation
+                - listitem [ref=f12e65]:
+                  - link "侧边栏模块" [ref=f12e66] [cursor=pointer]:
+                    - /url: /system-settings/site/sidebar-modules
+            - listitem [ref=f12e68]:
+              - button "身份验证" [ref=f12e69] [cursor=pointer]
+            - listitem [ref=f12e75]:
+              - button "计费与支付" [ref=f12e76] [cursor=pointer]
+            - listitem [ref=f12e82]:
+              - button "模型与路由" [ref=f12e83] [cursor=pointer]
+            - listitem [ref=f12e90]:
+              - button "安全与限制" [ref=f12e91] [cursor=pointer]
+            - listitem [ref=f12e97]:
+              - button "控制台内容" [ref=f12e98] [cursor=pointer]
+            - listitem [ref=f12e104]:
+              - button "运维" [ref=f12e105] [cursor=pointer]
+        - button "Toggle Sidebar" [ref=f12e111]
+      - main [ref=f12e112]:
+        - main [ref=f12e114]:
+          - heading "系统公告" [level=2] [ref=f12e118]
+          - generic [ref=f12e121]: 正在加载设置...
+  - generic [ref=f12e124]:
+    - heading "Command Palette" [level=2] [ref=f12e125]
+    - paragraph [ref=f12e126]: Search for a command to run...
+  - region "Notifications alt+T"

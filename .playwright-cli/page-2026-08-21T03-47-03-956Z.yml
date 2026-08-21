@@ -1,0 +1,71 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - button "新建会话" [ref=e9] [cursor=pointer]
+      - button "收起侧边栏" [ref=e31] [cursor=pointer]
+    - button "新建会话" [ref=e34] [cursor=pointer]:
+      - generic [ref=e37]: 新会话
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]: 工作区
+        - generic [ref=e44]:
+          - button "搜索会话" [ref=e45] [cursor=pointer]
+          - textbox "搜索会话…"
+        - generic [ref=e49]:
+          - button "视图选项" [ref=e51] [cursor=pointer]
+          - button "添加工作区" [ref=e54] [cursor=pointer]
+      - tree "会话" [ref=e60]:
+        - generic [ref=e61]:
+          - treeitem "dsh-desktop" [expanded] [ref=e63] [cursor=pointer]
+          - treeitem "进行中 你好，请回复：中转站模型测 刚刚" [selected] [ref=e467] [cursor=pointer]:
+            - generic [ref=e143]: 进行中
+            - generic [ref=e144]: 你好，请回复：中转站模型测
+            - generic [ref=e478]: 刚刚
+          - treeitem "进行中 分析公司内容模型中转站需求 3分钟" [ref=e465] [cursor=pointer]:
+            - generic [ref=e147]: 进行中
+            - generic [ref=e158]: 分析公司内容模型中转站需求
+            - generic [ref=e159]: 3分钟
+        - treeitem "suunto-ui-admin-vue3" [ref=e71] [cursor=pointer]
+        - treeitem "suunto-mall-h5" [ref=e79] [cursor=pointer]
+    - button "设置" [ref=e88] [cursor=pointer]
+  - generic [ref=e97]:
+    - banner [ref=e480]:
+      - generic [ref=e481]:
+        - generic [ref=e482]:
+          - navigation "会话层级" [ref=e483]:
+            - button "你好，请回复：中转站模型测" [disabled] [ref=e485]
+          - generic "功能完整的编码 Agent，支持文件编辑、Shell、文件与网页检索、Skills、计划、目标、子代理和工作流。" [ref=e488]: 标准模式
+        - button "Session log" [ref=e496] [cursor=pointer]
+      - tablist [ref=e500]:
+        - tab "对话" [selected] [ref=e501] [cursor=pointer]
+        - tab "轨迹" [ref=e502] [cursor=pointer]
+    - generic [ref=e98]:
+      - generic [ref=e508]:
+        - generic [ref=e511]:
+          - generic [ref=e512]: 你好，请回复：中转站模型测试成功
+          - generic [ref=e515]:
+            - generic [ref=e516]: 11:47
+            - button "复制" [ref=e517] [cursor=pointer]
+        - button "上下文注入 @deepseek-ai/dsh-system-prompt" [ref=e523] [cursor=pointer]:
+          - generic [ref=e532]: 上下文注入
+          - generic [ref=e534]: "@deepseek-ai/dsh-system-prompt"
+        - button "上下文注入 skill-catalog" [ref=e538] [cursor=pointer]:
+          - generic [ref=e547]: 上下文注入
+          - generic [ref=e549]: skill-catalog
+        - status [ref=e550]: Deep diving...
+      - generic [ref=e130]:
+        - textbox "给智能体发消息" [active] [ref=e551]
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - button "命令" [ref=e164] [cursor=pointer]
+            - button "访问模式，当前：Full access" [ref=e169] [cursor=pointer]:
+              - generic [ref=e175]: Full access
+          - generic [ref=e136]:
+            - button "选择模型，当前 Qwen3.7 Flash" [ref=e466] [cursor=pointer]:
+              - generic [ref=e182]: Qwen3.7 Flash
+            - button "停止生成" [ref=e552] [cursor=pointer]
+  - generic [ref=e190]:
+    - generic [ref=e191]:
+      - generic: 详情
+      - button "关闭详情" [ref=e192] [cursor=pointer]
+    - generic [ref=e195]: 点击消息流中的工具行查看详情

@@ -1,0 +1,548 @@
+- generic [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - generic [ref=f6e6]:
+      - link [ref=f6e424] [cursor=pointer]:
+        - /url: "#content"
+        - text: 跳到主内容
+      - banner [ref=f6e8]:
+        - generic [ref=f6e9]:
+          - button [ref=f6e425] [cursor=pointer]:
+            - generic [ref=f6e11]: Toggle Sidebar
+          - link [ref=f6e426] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f6e15]: 颂拓AI
+          - generic [ref=f6e16]:
+            - navigation [ref=f6e18]:
+              - link [ref=f6e428] [cursor=pointer]:
+                - /url: /dashboard
+                - text: 控制台
+              - link [ref=f6e429] [cursor=pointer]:
+                - /url: /pricing
+                - text: 模型广场
+              - link [ref=f6e430] [cursor=pointer]:
+                - /url: /rankings
+                - text: 排行榜
+            - button [ref=f6e431] [cursor=pointer]:
+              - generic [ref=f6e23]: 搜索
+              - generic:
+                - generic: ⌘
+                - text: K
+            - button [ref=f6e432] [cursor=pointer]
+            - button [ref=f6e433] [cursor=pointer]:
+              - generic [ref=f6e26]: 更改语言
+            - button [ref=f6e434] [cursor=pointer]
+            - button [ref=f6e435] [cursor=pointer]:
+              - generic [ref=f6e29]: R
+      - generic [ref=f6e31]:
+        - generic [ref=f6e34]:
+          - generic [ref=f6e36]:
+            - generic [ref=f6e37]:
+              - generic [ref=f6e38]: 聊天
+              - list [ref=f6e39]:
+                - listitem [ref=f6e40]:
+                  - link [ref=f6e436] [cursor=pointer]:
+                    - /url: /playground
+                    - generic [ref=f6e44]: 游乐场
+                - listitem [ref=f6e45]:
+                  - button [ref=f6e437] [cursor=pointer]:
+                    - generic [ref=f6e49]: 聊天
+            - generic [ref=f6e52]:
+              - generic [ref=f6e53]: 常规
+              - list [ref=f6e54]:
+                - listitem [ref=f6e55]:
+                  - link [ref=f6e438] [cursor=pointer]:
+                    - /url: /dashboard/overview
+                    - generic [ref=f6e59]: 概览
+                - listitem [ref=f6e60]:
+                  - link [ref=f6e439] [cursor=pointer]:
+                    - /url: /dashboard/models
+                    - generic [ref=f6e67]: 数据看板
+                - listitem [ref=f6e68]:
+                  - link [ref=f6e440] [cursor=pointer]:
+                    - /url: /keys
+                    - generic [ref=f6e74]: API 密钥
+                - listitem [ref=f6e75]:
+                  - link [ref=f6e441] [cursor=pointer]:
+                    - /url: /usage-logs/common
+                    - generic [ref=f6e80]: 使用日志
+                - listitem [ref=f6e81]:
+                  - link [ref=f6e442] [cursor=pointer]:
+                    - /url: /usage-logs/task
+                    - generic [ref=f6e86]: 任务日志
+            - generic [ref=f6e87]:
+              - generic [ref=f6e88]: 个人
+              - list [ref=f6e89]:
+                - listitem [ref=f6e90]:
+                  - link [ref=f6e443] [cursor=pointer]:
+                    - /url: /profile
+                    - generic [ref=f6e95]: 个人资料
+            - generic [ref=f6e96]:
+              - generic [ref=f6e97]: 管理员
+              - list [ref=f6e98]:
+                - listitem [ref=f6e99]:
+                  - link [ref=f6e444] [cursor=pointer]:
+                    - /url: /channels
+                    - generic [ref=f6e107]: 渠道
+                - listitem [ref=f6e108]:
+                  - link [ref=f6e445] [cursor=pointer]:
+                    - /url: /models/metadata
+                    - generic [ref=f6e113]: 模型
+                - listitem [ref=f6e114]:
+                  - link [ref=f6e446] [cursor=pointer]:
+                    - /url: /users
+                    - generic [ref=f6e121]: 用户
+                - listitem [ref=f6e122]:
+                  - link [ref=f6e447] [cursor=pointer]:
+                    - /url: /redemption-codes
+                    - generic [ref=f6e126]: 兑换码
+                - listitem [ref=f6e127]:
+                  - link [ref=f6e448] [cursor=pointer]:
+                    - /url: /subscriptions
+                    - generic [ref=f6e131]: 订阅
+                - listitem [ref=f6e132]:
+                  - link [ref=f6e449] [cursor=pointer]:
+                    - /url: /system-info
+                    - generic [ref=f6e145]: 系统信息
+                - listitem [ref=f6e146]:
+                  - link [ref=f6e450] [cursor=pointer]:
+                    - /url: /system-settings/site
+                    - generic [ref=f6e151]: 系统设置
+          - button [ref=f6e451]
+        - main [ref=f6e153]:
+          - main [ref=f6e155]:
+            - generic [ref=f6e157]:
+              - heading [level=2] [ref=f6e452]:
+                - generic [ref=f6e160]:
+                  - generic [ref=f6e161]: 渠道
+                  - link [ref=f6e453] [cursor=pointer]:
+                    - /url: /system-settings/models/routing-reliability
+                    - generic [ref=f6e328]: "最大重试: 0"
+              - generic [ref=f6e163]:
+                - generic [ref=f6e164]:
+                  - generic [ref=f6e168] [cursor=pointer]: 批量操作
+                  - switch [ref=f6e454]
+                  - checkbox [ref=f6e170]
+                - generic [ref=f6e171]:
+                  - generic [ref=f6e176] [cursor=pointer]: 标签模式
+                  - switch [ref=f6e455]
+                  - checkbox [ref=f6e178]
+                - generic [ref=f6e179]:
+                  - generic [ref=f6e182] [cursor=pointer]: 使用 ID 排序
+                  - switch [ref=f6e456]
+                  - checkbox [ref=f6e184]
+                - button [ref=f6e457] [cursor=pointer]:
+                  - generic [ref=f6e187]: 创建渠道
+                - button [ref=f6e188] [cursor=pointer]
+            - generic [ref=f6e190]:
+              - generic [ref=f6e191]:
+                - textbox [ref=f6e458]:
+                  - /placeholder: 按名称、ID 或密钥筛选...
+                - textbox [ref=f6e459]:
+                  - /placeholder: 按模型筛选...
+                - button [ref=f6e460] [cursor=pointer]: 状态
+                - button [ref=f6e461] [cursor=pointer]: 类型
+                - button [ref=f6e462] [cursor=pointer]: 分组
+                - generic [ref=f6e197]:
+                  - button [ref=f6e463] [cursor=pointer]
+                  - group [ref=f6e464]:
+                    - button [pressed] [ref=f6e200] [cursor=pointer]
+                    - button [ref=f6e203] [cursor=pointer]
+                  - button [ref=f6e465] [cursor=pointer]: 查看
+              - generic [ref=f6e331]:
+                - generic [ref=f6e332]:
+                  - generic [ref=f6e333]: 阿里百炼
+                  - generic [ref=f6e344]:
+                    - button [ref=f6e468] [cursor=pointer]
+                    - button [ref=f6e469] [cursor=pointer]
+                    - button [ref=f6e470] [cursor=pointer]
+                    - button [ref=f6e471] [cursor=pointer]:
+                      - generic [ref=f6e349]: 打开菜单
+                - generic [ref=f6e350]:
+                  - generic [ref=f6e351]:
+                    - generic [ref=f6e352]:
+                      - generic [ref=f6e353]: "#1"
+                      - generic [ref=f6e354]: 千问
+                    - generic [ref=f6e359]:
+                      - generic [ref=f6e360]: 已使用 / 剩余
+                      - generic [ref=f6e362]:
+                        - generic [ref=f6e472]: "0.0403"
+                        - generic [ref=f6e473] [cursor=pointer]: "0"
+                  - generic [ref=f6e367]:
+                    - generic [ref=f6e368]: 优先级
+                    - generic [ref=f6e369]: 权重
+                    - generic [ref=f6e372]:
+                      - button [ref=f6e474] [cursor=pointer]
+                      - button [ref=f6e475]: "0"
+                      - button [ref=f6e476] [cursor=pointer]
+                    - generic [ref=f6e380]:
+                      - button [disabled] [ref=f6e477]
+                      - button [ref=f6e478]: "0"
+                      - button [ref=f6e479] [cursor=pointer]
+                    - generic [ref=f6e386]: 响应
+                    - generic [ref=f6e387]: 上次测试
+                    - generic [ref=f6e388]: 1.38 秒
+                    - generic [ref=f6e391]: 2 小时前
+                - generic [ref=f6e394]: default
+            - generic [ref=f6e313]:
+              - generic [ref=f6e314]:
+                - generic [ref=f6e315]: 总计：
+                - generic [ref=f6e316]: "1"
+              - generic [ref=f6e317]:
+                - paragraph [ref=f6e318]: 每页行数
+                - combobox [ref=f6e319] [cursor=pointer]:
+                  - generic [ref=f6e320]: "20"
+                - textbox [ref=f6e321]: "20"
+              - generic [ref=f6e322]:
+                - button [disabled]:
+                  - generic: 前往首页
+                - button [disabled]:
+                  - generic: 前往上一页
+                - button [ref=f6e483] [cursor=pointer]:
+                  - generic [ref=f6e400]: 前往第 1 页
+                  - text: "1"
+                - button [disabled]:
+                  - generic: 前往下一页
+                - button [disabled]:
+                  - generic: 前往末页
+    - generic [ref=f6e323]:
+      - heading [level=2] [ref=f6e484]: Command Palette
+      - paragraph [ref=f6e325]: Search for a command to run...
+    - region "Notifications alt+T"
+  - dialog [ref=f6e488]:
+    - generic [ref=f6e491]:
+      - heading "编辑渠道阿里百炼" [level=2] [ref=f6e492]
+      - paragraph [ref=f6e498]: 更新渠道配置，完成后点击保存。
+    - generic [ref=f6e500]:
+      - complementary [ref=f6e501]:
+        - generic [ref=f6e502]:
+          - generic [ref=f6e504]:
+            - img "Qwen" [ref=f6e507]
+            - generic [ref=f6e509]:
+              - paragraph [ref=f6e510]: 阿里百炼
+              - paragraph [ref=f6e511]: 已启用 · 3/3
+          - navigation "渠道" [ref=f6e512]:
+            - button "基本信息 就绪 就绪" [ref=f6e514] [cursor=pointer]:
+              - generic [ref=f6e519]:
+                - generic [ref=f6e520]: 基本信息
+                - generic [ref=f6e521]: 就绪
+              - generic "就绪" [ref=f6e522]
+            - button "凭证 就绪 就绪" [ref=f6e527] [cursor=pointer]:
+              - generic [ref=f6e532]:
+                - generic [ref=f6e533]: 凭证
+                - generic [ref=f6e534]: 就绪
+              - generic "就绪" [ref=f6e535]
+            - button "模型与分组 就绪 就绪" [ref=f6e540] [cursor=pointer]:
+              - generic [ref=f6e552]:
+                - generic [ref=f6e553]: 模型与分组
+                - generic [ref=f6e554]: 就绪
+              - generic "就绪" [ref=f6e555]
+            - button "高级设置 高级设置" [ref=f6e560] [cursor=pointer]:
+              - generic [ref=f6e565]: 高级设置
+              - generic "高级设置" [ref=f6e567]
+      - generic [ref=f6e570]:
+        - generic [ref=f6e572]:
+          - generic [ref=f6e578]:
+            - heading "基本信息" [level=3] [ref=f6e579]
+            - paragraph [ref=f6e580]: 名称、供应商类型和可用状态。
+          - generic [ref=f6e581]:
+            - group [ref=f6e582]:
+              - generic [ref=f6e583]:
+                - generic [ref=f6e584]: 类型 *
+                - generic [ref=f6e585]:
+                  - generic:
+                    - generic:
+                      - img "Qwen"
+                  - combobox "搜索渠道类型..." [ref=f6e587]: 阿里百炼
+            - generic [ref=f6e588]:
+              - generic [ref=f6e589]: 名称 *
+              - textbox "名称 *" [ref=f6e590]:
+                - /placeholder: 例如，OpenAI GPT-4 生产环境
+                - text: 千问
+        - generic [ref=f6e592]:
+          - generic [ref=f6e598]:
+            - heading "凭证" [level=3] [ref=f6e599]
+            - paragraph [ref=f6e600]: 身份验证
+          - group [ref=f6e602]:
+            - generic [ref=f6e603]:
+              - generic [ref=f6e604]: API 地址
+              - textbox "API 地址" [ref=f6e605]:
+                - /placeholder: 留空使用默认
+              - paragraph [ref=f6e606]: 自定义 API 基础 URL。对于官方渠道，New API 具有内置地址。仅针对第三方代理站点或特殊端点填写此项。请勿添加 /v1 或尾部斜杠。
+            - generic [ref=f6e607]:
+              - heading "身份验证" [level=4] [ref=f6e612]
+              - generic [ref=f6e613]:
+                - generic [ref=f6e614]: API 密钥 *
+                - textbox "API 密钥 *" [ref=f6e615]:
+                  - /placeholder: 留空以保留现有密钥
+                - paragraph [ref=f6e616]:
+                  - generic [ref=f6e617]: 输入新密钥以更新，或留空以保留当前密钥
+                - generic [ref=f6e619]:
+                  - generic [ref=f6e620]:
+                    - generic [ref=f6e621]:
+                      - paragraph [ref=f6e622]: 当前密钥
+                      - paragraph [ref=f6e623]: 需要验证才能显示已保存的密钥。
+                    - generic [ref=f6e624]:
+                      - button "显示密钥" [ref=f6e625] [cursor=pointer]
+                      - button "复制" [disabled]
+                  - textbox "隐藏 — 验证以显示" [ref=f6e626]
+        - generic [ref=f6e628]:
+          - generic [ref=f6e641]:
+            - heading "模型与分组" [level=3] [ref=f6e642]
+            - paragraph [ref=f6e643]: 已发布的模型、分组和模型重映射规则。
+          - generic [ref=f6e644]:
+            - generic [ref=f6e645]:
+              - generic [ref=f6e646]:
+                - generic [ref=f6e647]:
+                  - generic [ref=f6e648]:
+                    - generic [ref=f6e649]: 模型 *
+                    - paragraph [ref=f6e650]: 此渠道支持的模型列表。使用逗号分隔多个模型。
+                  - generic [ref=f6e651]: 已选 7 个
+                - toolbar [ref=f6e652]:
+                  - generic [ref=f6e653]:
+                    - button "deepseek-v4-pro" [ref=f6e654] [cursor=pointer]
+                    - button [ref=f6e655] [cursor=pointer]
+                  - generic [ref=f6e656]:
+                    - button "deepseek-v4-flash" [ref=f6e657] [cursor=pointer]
+                    - button [ref=f6e658] [cursor=pointer]
+                  - generic [ref=f6e659]:
+                    - button "qwen3.8-max" [ref=f6e660] [cursor=pointer]
+                    - button [ref=f6e661] [cursor=pointer]
+                  - generic [ref=f6e662]:
+                    - button "qwen3.7-flash" [ref=f6e663] [cursor=pointer]
+                    - button [ref=f6e664] [cursor=pointer]
+                  - generic [ref=f6e665]:
+                    - button "qwen3.7-plus" [ref=f6e666] [cursor=pointer]
+                    - button [ref=f6e667] [cursor=pointer]
+                  - generic [ref=f6e668]:
+                    - button "qwen3.7-max" [ref=f6e669] [cursor=pointer]
+                    - button [ref=f6e670] [cursor=pointer]
+                  - generic [ref=f6e671]:
+                    - button "qwen3.6-plus" [ref=f6e672] [cursor=pointer]
+                    - button [ref=f6e673] [cursor=pointer]
+                  - combobox "选择模型或添加自定义模型" [ref=f6e674]
+                - textbox [ref=f6e675]
+              - separator [ref=f6e676]
+              - generic [ref=f6e677]:
+                - generic [ref=f6e678]:
+                  - paragraph [ref=f6e679]: 快捷操作
+                  - paragraph [ref=f6e680]: 使用预设或上游发现来更快填充模型列表。
+                - generic [ref=f6e681]:
+                  - button "填入相关模型" [ref=f6e682] [cursor=pointer]
+                  - button "填充所有模型" [ref=f6e683] [cursor=pointer]
+                  - button "从上游获取" [ref=f6e684] [cursor=pointer]
+                  - button "全部复制" [ref=f6e685] [cursor=pointer]
+                  - button "清除全部" [ref=f6e686] [cursor=pointer]
+            - generic [ref=f6e688]:
+              - generic [ref=f6e690]:
+                - generic [ref=f6e691]:
+                  - generic [ref=f6e692]: 模型映射
+                  - button "模型映射如何工作" [ref=f6e693] [cursor=pointer]
+                - paragraph [ref=f6e694]: 将请求模型名称映射到实际提供商模型名称 (JSON 格式)
+              - generic [ref=f6e696]:
+                - generic [ref=f6e697]:
+                  - tablist [ref=f6e698]:
+                    - tab "可视化" [selected] [ref=f6e699] [cursor=pointer]
+                    - tab "JSON" [ref=f6e700] [cursor=pointer]
+                  - button "填入模板" [ref=f6e701] [cursor=pointer]
+                - tabpanel "可视化" [ref=f6e702]:
+                  - generic [ref=f6e703]: 未配置模型映射。点击“添加映射”即可开始使用。
+                  - button "添加映射" [ref=f6e704] [cursor=pointer]
+            - generic [ref=f6e706]:
+              - generic [ref=f6e707]:
+                - generic [ref=f6e708]: 分组 *
+                - paragraph [ref=f6e709]: 可以访问此渠道的用户组。
+              - toolbar [ref=f6e710]:
+                - generic [ref=f6e711]:
+                  - generic [ref=f6e712]: default
+                  - button [ref=f6e713] [cursor=pointer]
+                - combobox "请选择可以访问此渠道的用户组。" [ref=f6e714]
+              - textbox [ref=f6e715]
+        - generic [ref=f6e717]:
+          - button "高级设置 请求覆盖、路由行为和上游模型自动化" [expanded] [active] [ref=f6e718] [cursor=pointer]:
+            - generic [ref=f6e724]:
+              - generic [ref=f6e725]: 高级设置
+              - generic [ref=f6e726]: 请求覆盖、路由行为和上游模型自动化
+          - generic [ref=f6e735]:
+            - generic [ref=f6e736]:
+              - heading "路由与覆盖" [level=3] [ref=f6e743]
+              - generic [ref=f6e744]:
+                - heading "路由策略" [level=4] [ref=f6e751]
+                - generic [ref=f6e752]:
+                  - generic [ref=f6e753]:
+                    - generic [ref=f6e754]: 优先级
+                    - spinbutton "优先级" [ref=f6e755]: "0"
+                    - paragraph [ref=f6e756]: 优先级更高的渠道优先被选中
+                  - generic [ref=f6e757]:
+                    - generic [ref=f6e758]: 权重
+                    - spinbutton "权重" [ref=f6e759]: "0"
+                    - paragraph [ref=f6e760]: 用于负载均衡。权重越高 = 请求越多
+                - generic [ref=f6e761]:
+                  - generic [ref=f6e762]: 测试模型
+                  - textbox "测试模型" [ref=f6e763]:
+                    - /placeholder: 用于测试的模型
+                  - paragraph [ref=f6e764]: 测试渠道连接时使用的模型
+                - generic [ref=f6e765]:
+                  - generic [ref=f6e766]:
+                    - generic [ref=f6e767]: 自动封禁
+                    - paragraph [ref=f6e768]: 重复失败时自动禁用渠道
+                  - switch "自动封禁" [checked] [ref=f6e769]
+                  - checkbox [checked] [ref=f6e770]
+              - generic [ref=f6e771]:
+                - heading "内部备注" [level=4] [ref=f6e777]
+                - generic [ref=f6e778]:
+                  - generic [ref=f6e779]:
+                    - generic [ref=f6e780]: 标签
+                    - textbox "标签" [ref=f6e781]:
+                      - /placeholder: 用于分组渠道的可选标签
+                    - paragraph [ref=f6e782]: 按标签对渠道进行分组以进行批量操作
+                  - generic [ref=f6e783]:
+                    - generic [ref=f6e784]: 备注
+                    - textbox "备注" [ref=f6e785]:
+                      - /placeholder: 关于此渠道的可选备注
+                    - paragraph [ref=f6e786]: 内部备注（不显示给用户）
+              - generic [ref=f6e787]:
+                - heading "覆盖规则" [level=4] [ref=f6e793]
+                - generic [ref=f6e794]:
+                  - generic [ref=f6e795]:
+                    - generic [ref=f6e796]: 状态码映射
+                    - paragraph [ref=f6e797]: 将上游状态码映射到不同的代码
+                  - generic [ref=f6e798]:
+                    - generic [ref=f6e800]:
+                      - button "JSON 模式" [ref=f6e801] [cursor=pointer]
+                      - button "填入模板" [ref=f6e802] [cursor=pointer]
+                    - generic [ref=f6e803]:
+                      - generic [ref=f6e804]: 未配置状态码映射。
+                      - button "添加行" [ref=f6e805] [cursor=pointer]
+                - group [ref=f6e806]:
+                  - generic [ref=f6e807]:
+                    - generic [ref=f6e808]:
+                      - generic [ref=f6e809]:
+                        - generic [ref=f6e810]: 参数覆盖
+                        - paragraph [ref=f6e811]: 覆盖请求参数。无法覆盖 stream 参数。
+                      - generic [ref=f6e812]:
+                        - button "可视化编辑" [ref=f6e813] [cursor=pointer]
+                        - button "新格式模板" [ref=f6e814] [cursor=pointer]
+                        - button "清空" [ref=f6e815] [cursor=pointer]
+                    - generic [ref=f6e816]:
+                      - generic [ref=f6e817]:
+                        - generic [ref=f6e818]:
+                          - generic [ref=f6e822]: JSON
+                          - generic [ref=f6e823]: 1:1
+                        - generic [ref=f6e824]:
+                          - generic [ref=f6e825]: JSON
+                          - button "复制" [disabled]
+                          - button "格式化 JSON" [disabled]
+                      - generic [ref=f6e830]:
+                        - textbox "参数覆盖" [ref=f6e831]:
+                          - /placeholder: 覆盖请求参数。无法覆盖 stream 参数。
+                        - generic: "1"
+                  - generic [ref=f6e832]:
+                    - generic [ref=f6e833]:
+                      - generic [ref=f6e834]:
+                        - generic [ref=f6e835]: 请求头覆盖
+                        - paragraph [ref=f6e836]: 覆盖请求标头
+                      - generic [ref=f6e837]:
+                        - button "填入模板" [ref=f6e838] [cursor=pointer]
+                        - button "透传模板" [ref=f6e839] [cursor=pointer]
+                        - button "清空" [ref=f6e840] [cursor=pointer]
+                    - generic [ref=f6e841]:
+                      - generic [ref=f6e842]:
+                        - generic [ref=f6e843]:
+                          - generic [ref=f6e847]: JSON
+                          - generic [ref=f6e848]: 1:1
+                        - generic [ref=f6e849]:
+                          - generic [ref=f6e850]: JSON
+                          - button "复制" [disabled]
+                          - button "格式化 JSON" [disabled]
+                      - generic [ref=f6e855]:
+                        - textbox "请求头覆盖" [ref=f6e856]:
+                          - /placeholder: 输入 JSON 以覆盖请求头
+                        - generic: "1"
+                    - paragraph [ref=f6e857]:
+                      - text: "支持变量:"
+                      - code [ref=f6e858]: "{api_key}"
+                      - text: — 渠道密钥,
+                      - code [ref=f6e859]: "{client_header:NAME}"
+                      - text: — 客户端请求头值
+            - generic [ref=f6e860]:
+              - heading "渠道额外设置" [level=3] [ref=f6e866]
+              - group [ref=f6e867]:
+                - generic [ref=f6e868]:
+                  - generic [ref=f6e869]:
+                    - generic [ref=f6e870]:
+                      - generic [ref=f6e871]: 思维到内容
+                      - paragraph [ref=f6e872]: 将 reasoning_content 转换为 content 中的 <think> 标签
+                    - switch "思维到内容" [ref=f6e873]
+                    - checkbox [ref=f6e874]
+                  - generic [ref=f6e875]:
+                    - generic [ref=f6e876]:
+                      - generic [ref=f6e877]: 透传请求体
+                      - paragraph [ref=f6e878]: 将请求体直接传递给上游
+                    - switch "透传请求体" [ref=f6e879]
+                    - checkbox [ref=f6e880]
+                  - generic [ref=f6e881]:
+                    - generic [ref=f6e882]:
+                      - generic [ref=f6e883]: 跳过异步任务轮询延迟
+                      - paragraph [ref=f6e884]: 该渠道轮询异步任务时不等待一秒
+                    - switch "跳过异步任务轮询延迟" [ref=f6e885]
+                    - checkbox [ref=f6e886]
+                - generic [ref=f6e887]:
+                  - generic [ref=f6e888]: 代理地址
+                  - textbox "代理地址" [ref=f6e889]:
+                    - /placeholder: socks5://user:pass@host:port
+                  - paragraph [ref=f6e890]: 此渠道的网络代理（支持 HTTP、HTTPS、SOCKS5 和 SOCKS5H）
+                - generic [ref=f6e891]:
+                  - generic [ref=f6e892]: HTTP 协议
+                  - combobox "HTTP 协议" [ref=f6e893] [cursor=pointer]:
+                    - generic [ref=f6e894]: 自动
+                  - textbox [ref=f6e895]: auto
+                  - paragraph [ref=f6e896]: 自动在可用时协商 HTTP/2。HTTP/1.1 会在并发时使用多条保持连接的连接。
+                - generic [ref=f6e897]:
+                  - generic [ref=f6e898]: HTTP/2 连接分片
+                  - combobox "HTTP/2 连接分片" [ref=f6e899] [cursor=pointer]:
+                    - generic [ref=f6e900]: "1"
+                  - textbox [ref=f6e901]: "1"
+                  - paragraph [ref=f6e902]: 将 HTTP/2 流量分散到同一上游源站的多条可复用连接（1-8）。
+                - generic [ref=f6e903]:
+                  - generic [ref=f6e904]: 系统提示词
+                  - textbox "系统提示词" [ref=f6e905]:
+                    - /placeholder: 输入系统提示词（用户提示词优先）
+                  - paragraph [ref=f6e906]: 此渠道的默认系统提示
+                - generic [ref=f6e907]:
+                  - generic [ref=f6e908]:
+                    - generic [ref=f6e909]: 系统提示词连接
+                    - paragraph [ref=f6e910]: 将渠道系统提示与用户的提示连接起来
+                  - switch "系统提示词连接" [ref=f6e911]
+                  - checkbox [ref=f6e912]
+            - generic [ref=f6e913]:
+              - heading "检测上游模型设置" [level=3] [ref=f6e921]
+              - group [ref=f6e922]:
+                - generic [ref=f6e923]:
+                  - generic [ref=f6e924]:
+                    - generic [ref=f6e925]:
+                      - generic [ref=f6e926]: 上游模型更新检查
+                      - paragraph [ref=f6e927]: 定期检查上游模型是否有变更
+                    - switch "上游模型更新检查" [ref=f6e928]
+                    - checkbox [ref=f6e929]
+                  - generic [ref=f6e930]:
+                    - generic [ref=f6e931]:
+                      - generic [ref=f6e932]: 自动同步上游模型
+                      - paragraph [ref=f6e933]: 检测到上游模型变更时自动同步模型列表
+                    - switch "自动同步上游模型" [disabled] [ref=f6e934]
+                    - checkbox [disabled] [ref=f6e935]
+                - generic [ref=f6e936]:
+                  - generic [ref=f6e937]: 已忽略上游模型
+                  - textbox "已忽略上游模型" [ref=f6e938]:
+                    - /placeholder: 例如：gpt-4.1-nano,regex:^claude-.*$,regex:^sora-.*$
+                  - paragraph [ref=f6e939]: "使用英文逗号分隔精确模型名。以 regex: 开头可使用正则表达式忽略。"
+                - generic [ref=f6e940]:
+                  - generic [ref=f6e941]:
+                    - generic [ref=f6e942]: "上次检测时间:"
+                    - text: "-"
+                  - generic [ref=f6e943]:
+                    - generic [ref=f6e944]: "上次检测到可加入模型:"
+                    - text: 无
+    - generic [ref=f6e729]:
+      - button "取消" [ref=f6e730] [cursor=pointer]
+      - button "更新渠道" [ref=f6e731] [cursor=pointer]
+    - button "Close" [ref=f6e732] [cursor=pointer]

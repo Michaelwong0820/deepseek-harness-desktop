@@ -1,0 +1,90 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - button "新建会话" [ref=e9] [cursor=pointer]
+      - button "收起侧边栏" [ref=e31] [cursor=pointer]
+    - button "新建会话" [ref=e34] [cursor=pointer]:
+      - generic [ref=e37]: 新会话
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]: 工作区
+        - generic [ref=e44]:
+          - button "搜索会话" [ref=e45] [cursor=pointer]
+          - textbox "搜索会话…"
+        - generic [ref=e49]:
+          - button "视图选项" [ref=e51] [cursor=pointer]
+          - button "添加工作区" [ref=e54] [cursor=pointer]
+      - tree "会话" [ref=e60]:
+        - generic [ref=e61]:
+          - treeitem "dsh-desktop" [expanded] [ref=e63] [cursor=pointer]
+          - treeitem "新会话" [selected] [ref=e142] [cursor=pointer]
+          - treeitem "进行中 分析公司内容模型中转站需求 2分钟" [ref=e196] [cursor=pointer]:
+            - generic [ref=e147]: 进行中
+            - generic [ref=e158]: 分析公司内容模型中转站需求
+            - generic [ref=e159]: 2分钟
+        - treeitem "suunto-ui-admin-vue3" [ref=e71] [cursor=pointer]
+        - treeitem "suunto-mall-h5" [ref=e79] [cursor=pointer]
+    - generic [ref=e87]:
+      - button "设置" [expanded] [ref=e88] [cursor=pointer]
+      - dialog "设置" [ref=e198]:
+        - navigation [ref=e199]:
+          - generic [ref=e200]: 设置
+          - generic [ref=e201]:
+            - button "通用设置" [ref=e202] [cursor=pointer]
+            - button "模型" [ref=e208] [cursor=pointer]
+            - button "插件" [ref=e213] [cursor=pointer]
+            - button "Agent 预设" [ref=e217] [cursor=pointer]
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - button "打开配置文件" [ref=e229] [cursor=pointer]
+            - button "关闭" [active] [ref=e230] [cursor=pointer]
+          - generic [ref=e238]:
+            - generic [ref=e239]:
+              - generic [ref=e240]:
+                - generic [ref=e241]: Agent 预设
+                - generic [ref=e242]: 对此后新建的会话生效。运行中的会话保持它开始时的预设。
+              - button "标准模式" [ref=e244] [cursor=pointer]
+            - generic [ref=e247]:
+              - generic [ref=e248]:
+                - generic [ref=e249]: 权限
+                - generic [ref=e250]: 选择新会话的默认权限模式
+              - button "Full access" [ref=e252] [cursor=pointer]
+            - generic [ref=e255]:
+              - generic [ref=e256]: 语言
+              - button "中文" [ref=e259] [cursor=pointer]
+            - generic [ref=e262]:
+              - generic [ref=e263]: 外观
+              - generic [ref=e264]:
+                - button "浅色" [ref=e265] [cursor=pointer]
+                - button "深色" [ref=e276] [cursor=pointer]
+                - button "跟随系统" [pressed] [ref=e279] [cursor=pointer]
+            - generic [ref=e283]:
+              - generic [ref=e284]:
+                - generic [ref=e285]: 繁忙时 Enter 键行为
+                - generic [ref=e286]: 仅在智能体运行时生效；Cmd/Ctrl+Enter 使用另一行为
+              - button "排队发送" [ref=e288] [cursor=pointer]
+  - generic [ref=e102]:
+    - generic [ref=e105]:
+      - generic [ref=e109]: 探索未至之境
+      - generic [ref=e110]: 预览版
+    - generic [ref=e111]:
+      - button "选择工作区" [ref=e112] [cursor=pointer]:
+        - generic [ref=e115]: dsh-desktop
+      - button "标准模式" [ref=e120] [cursor=pointer]
+    - generic [ref=e130]:
+      - textbox "描述你想要构建的内容" [ref=e163]
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - button "命令" [ref=e164] [cursor=pointer]
+          - button "访问模式，当前：Full access" [ref=e169] [cursor=pointer]:
+            - generic [ref=e175]: Full access
+        - generic [ref=e136]:
+          - button "选择模型，当前 DeepSeek-V4-Flash，推理等级 High" [ref=e181] [cursor=pointer]:
+            - generic [ref=e182]: DeepSeek-V4-Flash
+            - generic [ref=e183]: High
+          - button "发送消息" [disabled] [ref=e186]
+  - generic [ref=e190]:
+    - generic [ref=e191]:
+      - generic: 详情
+      - button "关闭详情" [ref=e192] [cursor=pointer]
+    - generic [ref=e195]: 点击消息流中的工具行查看详情

@@ -1,0 +1,102 @@
+- generic [ref=f15e2]:
+  - generic [ref=f15e6]:
+    - link "跳到主内容" [ref=f15e7] [cursor=pointer]:
+      - /url: "#content"
+    - banner [ref=f15e8]:
+      - generic [ref=f15e9]:
+        - button "Toggle Sidebar" [ref=f15e10] [cursor=pointer]
+        - link "返回主页" [ref=f15e12] [cursor=pointer]:
+          - /url: /
+          - img "徽标" [ref=f15e14]
+          - generic [ref=f15e15]: 颂拓AI
+        - generic [ref=f15e16]:
+          - navigation [ref=f15e18]:
+            - link "控制台" [ref=f15e19] [cursor=pointer]:
+              - /url: /dashboard
+            - link "模型广场" [ref=f15e20] [cursor=pointer]:
+              - /url: /pricing
+            - link "排行榜" [ref=f15e21] [cursor=pointer]:
+              - /url: /rankings
+          - button "搜索" [ref=f15e22] [cursor=pointer]:
+            - generic:
+              - generic: ⌘
+              - text: K
+          - button "通知" [ref=f15e24] [cursor=pointer]
+          - button "更改语言" [ref=f15e25] [cursor=pointer]
+          - button "打开主题设置" [ref=f15e27] [cursor=pointer]
+          - button "R" [ref=f15e28] [cursor=pointer]
+    - generic [ref=f15e31]:
+      - generic [ref=f15e34]:
+        - generic [ref=f15e36]:
+          - generic [ref=f15e37]:
+            - generic [ref=f15e38]: 聊天
+            - list [ref=f15e39]:
+              - listitem [ref=f15e40]:
+                - link "游乐场" [ref=f15e41] [cursor=pointer]:
+                  - /url: /playground
+              - listitem [ref=f15e45]:
+                - button "聊天" [ref=f15e46] [cursor=pointer]
+          - generic [ref=f15e52]:
+            - generic [ref=f15e53]: 常规
+            - list [ref=f15e54]:
+              - listitem [ref=f15e55]:
+                - link "概览" [ref=f15e56] [cursor=pointer]:
+                  - /url: /dashboard/overview
+              - listitem [ref=f15e60]:
+                - link "数据看板" [ref=f15e61] [cursor=pointer]:
+                  - /url: /dashboard/models
+              - listitem [ref=f15e68]:
+                - link "API 密钥" [ref=f15e69] [cursor=pointer]:
+                  - /url: /keys
+              - listitem [ref=f15e75]:
+                - link "使用日志" [ref=f15e76] [cursor=pointer]:
+                  - /url: /usage-logs/common
+              - listitem [ref=f15e81]:
+                - link "任务日志" [ref=f15e82] [cursor=pointer]:
+                  - /url: /usage-logs/task
+          - generic [ref=f15e87]:
+            - generic [ref=f15e88]: 个人
+            - list [ref=f15e89]:
+              - listitem [ref=f15e90]:
+                - link "个人资料" [ref=f15e91] [cursor=pointer]:
+                  - /url: /profile
+          - generic [ref=f15e96]:
+            - generic [ref=f15e97]: 管理员
+            - list [ref=f15e98]:
+              - listitem [ref=f15e99]:
+                - link "渠道" [ref=f15e100] [cursor=pointer]:
+                  - /url: /channels
+              - listitem [ref=f15e108]:
+                - link "模型" [ref=f15e109] [cursor=pointer]:
+                  - /url: /models/metadata
+              - listitem [ref=f15e114]:
+                - link "用户" [ref=f15e115] [cursor=pointer]:
+                  - /url: /users
+              - listitem [ref=f15e122]:
+                - link "兑换码" [ref=f15e123] [cursor=pointer]:
+                  - /url: /redemption-codes
+              - listitem [ref=f15e127]:
+                - link "订阅" [ref=f15e128] [cursor=pointer]:
+                  - /url: /subscriptions
+              - listitem [ref=f15e132]:
+                - link "系统信息" [ref=f15e133] [cursor=pointer]:
+                  - /url: /system-info
+              - listitem [ref=f15e146]:
+                - link "系统设置" [ref=f15e147] [cursor=pointer]:
+                  - /url: /system-settings/site
+        - button "Toggle Sidebar" [ref=f15e152]
+      - main [ref=f15e153]:
+        - main [ref=f15e155]:
+          - heading "模型调用分析" [level=2] [ref=f15e159]
+          - generic [ref=f15e162]:
+            - tablist [ref=f15e164]:
+              - tab "模型调用分析" [selected] [ref=f15e165] [cursor=pointer]
+              - tab "分流" [ref=f15e166] [cursor=pointer]
+              - tab "用户统计" [ref=f15e167] [cursor=pointer]
+            - generic [ref=f15e168]:
+              - button "偏好设置" [ref=f15e169] [cursor=pointer]
+              - button "筛选" [ref=f15e170] [cursor=pointer]
+  - generic [ref=f15e235]:
+    - heading "Command Palette" [level=2] [ref=f15e236]
+    - paragraph [ref=f15e237]: Search for a command to run...
+  - region "Notifications alt+T"

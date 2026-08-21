@@ -1,0 +1,23 @@
+- generic [ref=e2]:
+  - generic [ref=e278]:
+    - link [ref=e279] [cursor=pointer]:
+      - /url: /
+      - img "徽标" [ref=e281]
+      - heading "颂拓AI" [level=1] [ref=e282]
+    - generic [ref=e285]:
+      - heading "登录" [level=2] [ref=e287]
+      - generic [ref=e288]:
+        - generic [ref=e289]:
+          - generic [ref=e290]: 用户名或电子邮件
+          - textbox "用户名或电子邮件" [ref=e291]:
+            - /placeholder: 输入您的用户名或电子邮件
+        - generic [ref=e292]:
+          - generic [ref=e293]: 密码
+          - generic [ref=e294]:
+            - textbox "密码" [ref=e295]:
+              - /placeholder: 输入密码
+            - button "Toggle password visibility" [ref=e296] [cursor=pointer]
+          - link "忘记密码？" [ref=e297] [cursor=pointer]:
+            - /url: /forgot-password
+        - button "登录" [ref=e298] [cursor=pointer]
+  - region "Notifications alt+T"

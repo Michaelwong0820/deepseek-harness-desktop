@@ -1,0 +1,188 @@
+- generic [ref=e4]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - button "新建会话" [ref=e9] [cursor=pointer]
+      - button "收起侧边栏" [ref=e31] [cursor=pointer]
+    - button "新建会话" [ref=e34] [cursor=pointer]:
+      - generic [ref=e37]: 新会话
+    - generic [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]: 工作区
+        - generic [ref=e44]:
+          - button "搜索会话" [ref=e45] [cursor=pointer]
+          - textbox "搜索会话…"
+        - generic [ref=e49]:
+          - button "视图选项" [ref=e51] [cursor=pointer]
+          - button "添加工作区" [ref=e54] [cursor=pointer]
+      - tree "会话" [ref=e60]:
+        - generic [ref=e61]:
+          - treeitem "dsh-desktop" [expanded] [ref=e63] [cursor=pointer]
+          - treeitem "新会话" [selected] [ref=e142] [cursor=pointer]
+          - treeitem "进行中 分析公司内容模型中转站需求 2分钟" [ref=e196] [cursor=pointer]:
+            - generic [ref=e147]: 进行中
+            - generic [ref=e158]: 分析公司内容模型中转站需求
+            - generic [ref=e159]: 2分钟
+        - treeitem "suunto-ui-admin-vue3" [ref=e71] [cursor=pointer]
+        - treeitem "suunto-mall-h5" [ref=e79] [cursor=pointer]
+    - generic [ref=e87]:
+      - button "设置" [expanded] [ref=e88] [cursor=pointer]
+      - dialog "设置" [ref=e198]:
+        - navigation [ref=e199]:
+          - generic [ref=e200]: 设置
+          - generic [ref=e201]:
+            - button "通用设置" [ref=e202] [cursor=pointer]
+            - button "模型" [ref=e208] [cursor=pointer]
+            - button "插件" [ref=e213] [cursor=pointer]
+            - button "Agent 预设" [ref=e217] [cursor=pointer]
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - button "打开配置文件" [ref=e229] [cursor=pointer]
+            - button "关闭" [ref=e230] [cursor=pointer]
+          - generic [ref=e291]:
+            - heading "模型" [level=2] [ref=e292]
+            - paragraph [ref=e293]: 填入各提供方的 API 密钥即可使用其模型。
+            - list [ref=e294]:
+              - listitem [ref=e295]:
+                - generic [ref=e296]:
+                  - generic [ref=e297]:
+                    - generic [ref=e298]: DeepSeek
+                    - img "API 密钥已配置" [ref=e299]
+                  - button "编辑 DeepSeek (deepseek-official)" [ref=e301] [cursor=pointer]: 编辑
+              - listitem [ref=e302]:
+                - generic [ref=e303]:
+                  - generic [ref=e304]:
+                    - generic [ref=e305]: 颂拓中转站
+                    - generic [ref=e306]: 自定义
+                    - img "API 密钥已配置" [ref=e307]
+                  - generic [ref=e308]:
+                    - button "编辑 颂拓中转站 (songtuo-relay)" [ref=e309] [cursor=pointer]: 编辑
+                    - button "删除 颂拓中转站 (songtuo-relay)" [ref=e310] [cursor=pointer]: 删除
+                - generic [ref=e319]:
+                  - generic [ref=e320]:
+                    - generic [ref=e321]: 颂拓中转站
+                    - generic [ref=e322]: songtuo-relay
+                  - generic [ref=e323]:
+                    - generic [ref=e324]: API 密钥
+                    - textbox "API 密钥" [ref=e325]:
+                      - /placeholder: 已配置——输入新值可替换
+                  - group [ref=e326]:
+                    - generic "自定义设置" [active] [ref=e327] [cursor=pointer]
+                    - generic [ref=e331]:
+                      - generic [ref=e332]:
+                        - generic [ref=e333]: 显示名称
+                        - textbox "显示名称" [ref=e334]:
+                          - /placeholder: songtuo-relay
+                          - text: 颂拓中转站
+                      - generic [ref=e335]:
+                        - generic [ref=e336]: API 地址
+                        - textbox "API 地址" [ref=e337]:
+                          - /placeholder: http://172.16.5.234:3000/v1
+                          - text: http://172.16.5.234:3000/v1
+                      - generic [ref=e338]:
+                        - generic [ref=e339]: API 协议
+                        - combobox "API 协议" [ref=e340] [cursor=pointer]:
+                          - option "openai-completions" [selected]
+                          - option "openai-responses"
+                          - option "anthropic-messages"
+                      - region "模型目录" [ref=e341]:
+                        - generic [ref=e342]:
+                          - generic [ref=e343]:
+                            - generic [ref=e344]: 模型目录
+                            - generic [ref=e345]: 已自定义模型目录
+                          - button "恢复默认模型" [ref=e346] [cursor=pointer]
+                          - button "获取可用模型" [ref=e347] [cursor=pointer]
+                        - generic [ref=e349]:
+                          - textbox "模型 ID 1" [ref=e350]:
+                            - /placeholder: 模型 ID
+                            - text: deepseek-v4-flash
+                          - textbox "显示名称 1" [ref=e351]:
+                            - /placeholder: 显示名称
+                            - text: DeepSeek V4 Flash
+                          - button "容量 1" [ref=e352] [cursor=pointer]
+                          - button "删除模型 1" [ref=e355] [cursor=pointer]
+                        - generic [ref=e359]:
+                          - textbox "模型 ID 2" [ref=e360]:
+                            - /placeholder: 模型 ID
+                            - text: deepseek-v4-pro
+                          - textbox "显示名称 2" [ref=e361]:
+                            - /placeholder: 显示名称
+                            - text: DeepSeek V4 Pro
+                          - button "容量 2" [ref=e362] [cursor=pointer]
+                          - button "删除模型 2" [ref=e365] [cursor=pointer]
+                        - generic [ref=e369]:
+                          - textbox "模型 ID 3" [ref=e370]:
+                            - /placeholder: 模型 ID
+                            - text: qwen3.6-plus
+                          - textbox "显示名称 3" [ref=e371]:
+                            - /placeholder: 显示名称
+                            - text: Qwen3.6 Plus
+                          - button "容量 3" [ref=e372] [cursor=pointer]
+                          - button "删除模型 3" [ref=e375] [cursor=pointer]
+                        - generic [ref=e379]:
+                          - textbox "模型 ID 4" [ref=e380]:
+                            - /placeholder: 模型 ID
+                            - text: qwen3.7-flash
+                          - textbox "显示名称 4" [ref=e381]:
+                            - /placeholder: 显示名称
+                            - text: Qwen3.7 Flash
+                          - button "容量 4" [ref=e382] [cursor=pointer]
+                          - button "删除模型 4" [ref=e385] [cursor=pointer]
+                        - generic [ref=e389]:
+                          - textbox "模型 ID 5" [ref=e390]:
+                            - /placeholder: 模型 ID
+                            - text: qwen3.7-plus
+                          - textbox "显示名称 5" [ref=e391]:
+                            - /placeholder: 显示名称
+                            - text: Qwen3.7 Plus
+                          - button "容量 5" [ref=e392] [cursor=pointer]
+                          - button "删除模型 5" [ref=e395] [cursor=pointer]
+                        - generic [ref=e399]:
+                          - textbox "模型 ID 6" [ref=e400]:
+                            - /placeholder: 模型 ID
+                            - text: qwen3.7-max
+                          - textbox "显示名称 6" [ref=e401]:
+                            - /placeholder: 显示名称
+                            - text: Qwen3.7 Max
+                          - button "容量 6" [ref=e402] [cursor=pointer]
+                          - button "删除模型 6" [ref=e405] [cursor=pointer]
+                        - generic [ref=e409]:
+                          - textbox "模型 ID 7" [ref=e410]:
+                            - /placeholder: 模型 ID
+                            - text: qwen3.8-max
+                          - textbox "显示名称 7" [ref=e411]:
+                            - /placeholder: 显示名称
+                            - text: Qwen3.8 Max
+                          - button "容量 7" [ref=e412] [cursor=pointer]
+                          - button "删除模型 7" [ref=e415] [cursor=pointer]
+                        - button "添加模型" [ref=e418] [cursor=pointer]
+                  - generic [ref=e328]:
+                    - button "取消" [ref=e329] [cursor=pointer]
+                    - button "保存" [ref=e330] [cursor=pointer]
+            - generic [ref=e312]:
+              - button "添加提供方" [ref=e313] [cursor=pointer]
+              - button "添加自定义提供方" [ref=e316] [cursor=pointer]
+  - generic [ref=e102]:
+    - generic [ref=e105]:
+      - generic [ref=e109]: 探索未至之境
+      - generic [ref=e110]: 预览版
+    - generic [ref=e111]:
+      - button "选择工作区" [ref=e112] [cursor=pointer]:
+        - generic [ref=e115]: dsh-desktop
+      - button "标准模式" [ref=e120] [cursor=pointer]
+    - generic [ref=e130]:
+      - textbox "描述你想要构建的内容" [ref=e163]
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - button "命令" [ref=e164] [cursor=pointer]
+          - button "访问模式，当前：Full access" [ref=e169] [cursor=pointer]:
+            - generic [ref=e175]: Full access
+        - generic [ref=e136]:
+          - button "选择模型，当前 DeepSeek-V4-Flash，推理等级 High" [ref=e181] [cursor=pointer]:
+            - generic [ref=e182]: DeepSeek-V4-Flash
+            - generic [ref=e183]: High
+          - button "发送消息" [disabled] [ref=e186]
+  - generic [ref=e190]:
+    - generic [ref=e191]:
+      - generic: 详情
+      - button "关闭详情" [ref=e192] [cursor=pointer]
+    - generic [ref=e195]: 点击消息流中的工具行查看详情
