@@ -135,3 +135,12 @@ dsh-desktop/
   koffi 的 prebuilt 按平台分发（`@koromix/koffi-<平台>-<架构>`），npm 只装了当前平台包。
   交叉打包 Windows 时缺 `@koromix/koffi-win32-x64` → 显式装入 dependencies（锁 3.1.5），
   Windows 包现在自带 `win32_x64/koffi.node`
+
+---
+
+## v0.5.3 更新（目录选择器修复）
+
+- **修复 Windows 目录选择失败**：`win32 folder dialog worker exited before
+  reporting a result` —— 原生目录对话框 worker 在 Electron 内置模式下
+  （ELECTRON_RUN_AS_NODE）不可靠。改为固定使用 **browse 模式**
+  （`--patch src/browse-picker.patch.yml`，WebView 内文件浏览），跨平台稳定

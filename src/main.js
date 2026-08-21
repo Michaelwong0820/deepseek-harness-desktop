@@ -292,7 +292,15 @@ async function ensureDshWeb() {
     if (inv.useNodeMode) {
       // 内置 dsh：直接用 Electron 二进制以 Node 模式运行（无需 shell/系统 node）
       // --expose-internals: HMR 插件在 Node 24 下强制要求（否则报错退出）
-      dshProcess = spawn(process.execPath, ['--expose-internals', ...inv.args, 'web'], {
+      // --profile web + --patch: 固定 browse 目录选择器（原生 worker 在 Electron
+      //   模式下 Windows 会失败：win32 folder dialog worker exited before
+      //   reporting a result）。browse 模式在 WebView 内浏览目录，跨平台稳定。
+      const bootArgs = ['--expose-internals', ...inv.args, '--profile', 'web']
+      const pickerPatch = path.join(__dirname, 'browse-picker.patch.yml')
+      if (fs.existsSync(pickerPatch)) {
+        bootArgs.push('--patch', pickerPatch)
+      }
+      dshProcess = spawn(process.execPath, bootArgs, {
         cwd: os.homedir(),
         env: { ...process.env, PATH: shellPath, ELECTRON_RUN_AS_NODE: '1' },
         stdio: ['ignore', logFd, logFd],
