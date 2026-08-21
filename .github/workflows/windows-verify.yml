@@ -1,0 +1,75 @@
+name: Windows Verify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-verify:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Windows package
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: npx electron-builder --win nsis --x64
+
+      - name: Launch app and wait for DSH service
+        shell: pwsh
+        run: |
+          $exe = "dist\win-unpacked\DSH Desktop.exe"
+          if (!(Test-Path $exe)) { throw "exe not found: $exe" }
+          Start-Process -FilePath $exe
+          $ready = $false
+          for ($i = 0; $i -lt 90; $i++) {
+            Start-Sleep -Seconds 1
+            try {
+              $r = Invoke-WebRequest -Uri "http://127.0.0.1:3080" -UseBasicParsing -TimeoutSec 3
+              if ($r.StatusCode -eq 200) { $ready = $true; Write-Host "DSH service UP after $($i+1)s"; break }
+            } catch {}
+          }
+          if (!$ready) { throw "DSH service did not become ready on port 3080" }
+
+      - name: Verify service log (builtin dsh, no errors)
+        shell: pwsh
+        run: |
+          $log = "$env:USERPROFILE\.dsh-desktop\dsh-web.log"
+          if (!(Test-Path $log)) { throw "log not found: $log" }
+          $content = Get-Content $log -Raw
+          Write-Host "===== dsh-web.log ====="
+          Write-Host $content
+          if ($content -notmatch "source=builtin") { throw "builtin dsh was NOT used" }
+          if ($content -match "EADDRINUSE") { throw "port 3080 conflict detected" }
+          if ($content -match "Cannot find the native Koffi") { throw "koffi native module missing" }
+          if ($content -match "--expose-internals is required") { throw "HMR expose-internals missing" }
+          if ($content -match "directory picker failed") { throw "directory picker failed" }
+          Write-Host "LOG OK: builtin dsh, no known errors"
+
+      - name: Stop app
+        shell: pwsh
+        run: |
+          taskkill /F /T /IM "DSH Desktop.exe" 2>$null
+          Write-Host "app stopped"
+
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsh-desktop-windows
+          path: dist/*.exe
+          if-no-files-found: error
