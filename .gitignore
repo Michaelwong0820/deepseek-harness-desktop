@@ -19,3 +19,9 @@ out/
 
 # 本地文档，不入库
 颂拓AI中转站分析.md
+
+# 本地文档（不入库，README 除外）
+*.md
+!README.md
+*.doc
+*.docx
