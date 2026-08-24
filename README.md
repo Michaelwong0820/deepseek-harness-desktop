@@ -153,3 +153,14 @@ dsh-desktop/
   （directory-picker 是 host 端 + client 端双面组件，之前只挂了 host 端）
 - **CI 增加包完整性检查**：真 Windows 上自动验证内置 dsh / koffi 原生模块 /
   browse patch 双面 / main.js 关键逻辑，保证 Windows 与 macOS 行为一致
+
+---
+
+## v0.5.7 更新（ripgrep 修复）
+
+- **修复 Windows glob/grep 全报 "ripgrep launch failed"**：补装平台包
+  `@vscode/ripgrep-win32-x64`（含 rg.exe）
+- **修复 dsh-tool-fs-search 的 resolveRgPath 缓存 bug**（patch-package 打补丁）：
+  import 失败后永久缓存 rejected promise，导致服务生命周期内搜索永久失败；
+  现在失败清缓存允许重试 + 错误信息带平台包名
+- CI 完整性检查新增：rg.exe 存在 + fs-search patch 已应用

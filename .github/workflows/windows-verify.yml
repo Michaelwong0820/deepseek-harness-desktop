@@ -84,6 +84,13 @@ jobs:
           # 2c. node-addon-require-builtin win32-x64-msvc (loader's builtin require)
           if (!(Test-Path "$app\node_modules\node-addon-require-builtin-win32-x64-msvc")) { $errors += "node-addon-require-builtin win32 missing" }
 
+          # 2d. ripgrep win32-x64 (glob/grep tools)
+          if (!(Test-Path "$app\node_modules\@vscode\ripgrep-win32-x64\bin\rg.exe")) { $errors += "ripgrep win32-x64 missing" }
+
+          # 2e. fs-search patch applied (resolveRgPath retry fix)
+          $fsSearch = Get-Content "$app\node_modules\@deepseek-ai\dsh-tool-fs-search\lib\index.js" -Raw
+          if ($fsSearch -notmatch "failed to resolve packaged ripgrep binary") { $errors += "fs-search resolveRgPath patch NOT applied" }
+
           # 3. @deepseek-ai package count (expect 195)
           $count = (Get-ChildItem "$app\node_modules\@deepseek-ai" -Directory).Count
           if ($count -lt 190) { $errors += "@deepseek-ai package count low: $count" }

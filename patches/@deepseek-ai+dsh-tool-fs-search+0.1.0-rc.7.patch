@@ -1,0 +1,21 @@
+diff --git a/node_modules/@deepseek-ai/dsh-tool-fs-search/lib/index.js b/node_modules/@deepseek-ai/dsh-tool-fs-search/lib/index.js
+index a5ca0d8..0b906ca 100644
+--- a/node_modules/@deepseek-ai/dsh-tool-fs-search/lib/index.js
++++ b/node_modules/@deepseek-ai/dsh-tool-fs-search/lib/index.js
+@@ -118,7 +118,15 @@ let rgPathPromise;
+ *   when the platform package cannot be resolved.
+ */
+ function resolveRgPath() {
+-	rgPathPromise ??= import("@vscode/ripgrep").then((module) => module.rgPath);
++	if (!rgPathPromise) {
++		rgPathPromise = import("@vscode/ripgrep")
++			.then((module) => module.rgPath)
++			.catch((error) => {
++				// 失败时清除缓存，允许后续调用重试（避免永久缓存失败结果）
++				rgPathPromise = void 0;
++				throw new Error(`failed to resolve packaged ripgrep binary (missing @vscode/ripgrep-${process.platform}-${process.arch} platform package?): ${error?.message ?? String(error)}`);
++			});
++	}
+ 	return rgPathPromise;
+ }
+ /**
