@@ -164,3 +164,14 @@ dsh-desktop/
   import 失败后永久缓存 rejected promise，导致服务生命周期内搜索永久失败；
   现在失败清缓存允许重试 + 错误信息带平台包名
 - CI 完整性检查新增：rg.exe 存在 + fs-search patch 已应用
+
+---
+
+## v0.5.8 更新（恢复原生目录选择器）
+
+- **根因确认**：native 目录选择器崩溃是 koffi 与 **Electron 内置 Node ABI 不兼容**
+  （`koffi.view()` 触发进程级 FATAL ERROR），当初改 browse 是正确规避
+- **混合策略**：
+  - 机器有系统 Node（≥18）→ 用系统 Node 跑服务 → **native 原生对话框**（koffi 兼容）
+  - 无系统 Node → 回退 Electron 内置 + browse 兜底（功能完整）
+- 已验证：系统 Node 模式下 native 选择器插件链完整加载（mac 实测）

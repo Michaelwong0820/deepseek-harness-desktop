@@ -139,9 +139,35 @@ function builtinDshBin() {
 }
 
 /**
+ * 探测系统 Node（>=18 才可用）：
+ * native 目录选择器（koffi）与 Electron 内置 Node 的 ABI 不兼容会崩溃，
+ * 用系统 Node 运行服务即可让 native 选择器正常工作（原生对话框体验）。
+ * 返回系统 node 绝对路径；不存在或版本过老返回 null。
+ */
+function resolveSystemNode() {
+  const { execFileSync } = require('node:child_process')
+  const isWin = process.platform === 'win32'
+  try {
+    const shell = isWin ? 'cmd.exe' : '/bin/zsh'
+    const args = isWin ? ['/c', 'where node'] : ['-lc', 'which node']
+    const out = execFileSync(shell, args, { encoding: 'utf8' }).trim().split(/\r?\n/)[0]
+    if (!out) return null
+    const ver = execFileSync(out, ['--version'], { encoding: 'utf8' }).trim()
+    const major = Number.parseInt(ver.replace('v', '').split('.')[0], 10)
+    if (major >= 18) return out
+    resolverLog(`系统 node 版本过老(${ver})，回退内置`)
+    return null
+  }
+  catch {
+    return null
+  }
+}
+
+/**
  * 解析 dsh 的调用方式（cmd + 前置 args）。
  * 优先级：
- *   内置 dsh（打包自带，开箱即用）
+ *   内置 dsh + 系统 node（native 选择器可用，原生对话框体验）
+ *   > 内置 dsh + Electron node（browse 选择器兜底）
  *   > DSH_CMD 环境变量
  *   > 用户 shell 的 which/where dsh
  *   > npx 缓存扫描（默认 ~/.npm/_npx + npm config get cache 的 _npx）
@@ -156,7 +182,20 @@ function resolveDshInvocation() {
   // 0. 内置 dsh（最优先）
   const builtinBin = builtinDshBin()
   if (builtinBin) {
-    resolverLog(`内置 dsh 命中: ${builtinBin}`)
+    const systemNode = resolveSystemNode()
+    if (systemNode) {
+      // 系统 Node：koffi 兼容 → native 目录选择器可用（无需 browse patch）
+      resolverLog(`内置 dsh + 系统 node 命中: ${systemNode}`)
+      cachedDshInvocation = {
+        cmd: systemNode,
+        args: [builtinBin, '--profile', 'web'],
+        source: 'builtin-node',
+        useSystemNode: true,
+      }
+      return cachedDshInvocation
+    }
+    // Electron Node：koffi ABI 不兼容 → browse 选择器兜底
+    resolverLog(`内置 dsh + Electron node（无系统 node）`)
     cachedDshInvocation = {
       cmd: process.execPath,
       args: [builtinBin],
@@ -289,12 +328,22 @@ async function ensureDshWeb() {
   if (tray) tray.setToolTip('正在启动 DSH 服务…')
 
   try {
-    if (inv.useNodeMode) {
+    if (inv.useSystemNode) {
+      // 系统 Node 运行内置 dsh：koffi ABI 兼容 → native 目录选择器可用。
+      // 不带 browse patch，不带 --expose-internals（系统 node 无 HMR 问题）。
+      dshProcess = spawn(inv.cmd, [...inv.args, 'web'], {
+        cwd: os.homedir(),
+        shell: false,
+        env: { ...process.env, PATH: shellPath },
+        stdio: ['ignore', logFd, logFd],
+      })
+    }
+    else if (inv.useNodeMode) {
       // 内置 dsh：直接用 Electron 二进制以 Node 模式运行（无需 shell/系统 node）
       // --expose-internals: HMR 插件在 Node 24 下强制要求（否则报错退出）
-      // --profile web + --patch: 固定 browse 目录选择器（原生 worker 在 Electron
-      //   模式下 Windows 会失败：win32 folder dialog worker exited before
-      //   reporting a result）。browse 模式在 WebView 内浏览目录，跨平台稳定。
+      // --profile web + --patch: 固定 browse 目录选择器（koffi 与 Electron 内置
+      //   Node ABI 不兼容，native worker 崩溃：win32 folder dialog worker exited
+      //   before reporting a result）。browse 模式在 WebView 内浏览，跨平台兜底。
       const bootArgs = ['--expose-internals', ...inv.args, '--profile', 'web']
       const pickerPatch = path.join(__dirname, 'browse-picker.patch.yml')
       if (fs.existsSync(pickerPatch)) {
