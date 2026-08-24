@@ -330,8 +330,9 @@ async function ensureDshWeb() {
   try {
     if (inv.useSystemNode) {
       // 系统 Node 运行内置 dsh：koffi ABI 兼容 → native 目录选择器可用。
-      // 不带 browse patch，不带 --expose-internals（系统 node 无 HMR 问题）。
-      dshProcess = spawn(inv.cmd, [...inv.args, 'web'], {
+      // inv.args 已含 [bin.js, '--profile', 'web']，不再追加（否则变成
+      // "--profile web web" 会报 "web takes none of parent --profile"）。
+      dshProcess = spawn(inv.cmd, inv.args, {
         cwd: os.homedir(),
         shell: false,
         env: { ...process.env, PATH: shellPath },
