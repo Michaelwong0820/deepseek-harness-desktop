@@ -103,6 +103,12 @@ jobs:
           }
           Write-Host "PACKAGE INTEGRITY OK (builtin dsh / koffi / picker patch / main.js)"
 
+      - name: Diagnose native picker worker
+        shell: pwsh
+        run: |
+          node diag-worker.js "dist\win-unpacked\DSH Desktop.exe" "dist\win-unpacked\resources\app\node_modules\@deepseek-ai\dsh-host-directory-picker-native\lib\worker.cjs" 2>&1 | Tee-Object -FilePath diag-worker.txt
+          Write-Host "===== DIAG OUTPUT SAVED ====="
+
       - name: Stop app
         shell: pwsh
         run: |
@@ -115,3 +121,10 @@ jobs:
           name: dsh-desktop-windows
           path: dist/*.exe
           if-no-files-found: error
+
+      - name: Upload worker diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-diagnostic
+          path: diag-worker.txt
+          if-no-files-found: warn
